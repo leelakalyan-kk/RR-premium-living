@@ -1,0 +1,142 @@
+/* RR Premium Living — custom surface treatments */
+
+.gold-text {
+  background: linear-gradient(105deg, #f5d67d 0%, #d4af37 45%, #b08d1f 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.grain {
+  pointer-events: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2'/%3E%3C/filter%3E%3Crect width='140' height='140' filter='url(%23n)' opacity='0.55'/%3E%3C/svg%3E");
+}
+
+/* gold inner keyline for spotlight photography */
+.clip-frame {
+  position: relative;
+}
+.clip-frame::after {
+  content: '';
+  position: absolute;
+  inset: 14px;
+  border: 1px solid rgba(212, 175, 55, 0.55);
+  pointer-events: none;
+  z-index: 2;
+}
+
+/* nav underline sweep */
+.nav-link {
+  position: relative;
+}
+.nav-link::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: -6px;
+  height: 1px;
+  width: 100%;
+  background: currentColor;
+  transform: scaleX(0);
+  transform-origin: right;
+  transition: transform 0.45s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.nav-link:hover::after {
+  transform: scaleX(1);
+  transform-origin: left;
+}
+
+/* form controls */
+.field-input {
+  width: 100%;
+  background: #ffffff;
+  border: 1px solid rgba(11, 19, 43, 0.16);
+  padding: 0.8rem 1rem;
+  font-size: 0.95rem;
+  color: #0b132b;
+  outline: none;
+  transition: border-color 0.25s ease, box-shadow 0.25s ease;
+  border-radius: 4px;
+}
+.field-input::placeholder {
+  color: rgba(11, 19, 43, 0.35);
+}
+.field-input:focus {
+  border-color: #d4af37;
+  box-shadow: 0 0 0 3px rgba(212, 175, 55, 0.18);
+}
+select.field-input {
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' fill='none' stroke='%230B132B' stroke-width='1.8' stroke-linecap='round'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 1rem center;
+  padding-right: 2.6rem;
+}
+
+/* file upload cards */
+.file-card {
+  display: flex;
+  align-items: center;
+  gap: 0.9rem;
+  border: 1px dashed rgba(11, 19, 43, 0.3);
+  padding: 1rem;
+  cursor: pointer;
+  transition: border-color 0.25s ease, background-color 0.25s ease;
+  border-radius: 4px;
+  background: #ffffff;
+}
+.file-card:hover {
+  border-color: #d4af37;
+  background: rgba(212, 175, 55, 0.06);
+}
+.file-card.filled {
+  border-style: solid;
+  border-color: #d4af37;
+}
+
+/* menu table */
+.menu-table {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: left;
+}
+.menu-table th {
+  font-family: 'Cabinet Grotesk', sans-serif;
+  font-size: 0.72rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: #d4af37;
+  padding: 0 1.1rem 0.9rem;
+  border-bottom: 1px solid rgba(212, 175, 55, 0.35);
+  white-space: nowrap;
+}
+.menu-table td {
+  padding: 0.95rem 1.1rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.09);
+  font-size: 0.9rem;
+  color: rgba(240, 239, 235, 0.85);
+  vertical-align: top;
+  min-width: 150px;
+}
+.menu-table tbody tr {
+  transition: background-color 0.25s ease;
+}
+.menu-table tbody tr:hover {
+  background: rgba(212, 175, 55, 0.06);
+}
+.menu-day {
+  font-family: 'Cabinet Grotesk', sans-serif;
+  font-weight: 700;
+  color: #f5d67d;
+  white-space: nowrap;
+}
+
+/* location card corner line */
+.loc-card .corner-line {
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.loc-card:hover .corner-line {
+  transform: scaleX(1);
+}
