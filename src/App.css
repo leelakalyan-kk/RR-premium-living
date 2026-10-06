@@ -1,5 +1,22 @@
 /* RR Premium Living — custom surface treatments */
 
+.marquee-track {
+  animation: marquee-scroll 24s linear infinite;
+}
+
+.marquee-track:hover {
+  animation-play-state: paused;
+}
+
+@keyframes marquee-scroll {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
 .gold-text {
   background: linear-gradient(105deg, #f5d67d 0%, #d4af37 45%, #b08d1f 100%);
   -webkit-background-clip: text;

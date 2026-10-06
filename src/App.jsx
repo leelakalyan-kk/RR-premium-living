@@ -7,7 +7,7 @@ import Hero from "@/components/Hero";
 import EditorialMarquee from "@/components/Marquee";
 import Locations from "@/components/Locations";
 import Spaces from "@/components/Spaces";
-import Amenities from "@/components/Amenities";
+import Amenities from "@/components/Amenitied";
 import Food from "@/components/Food";
 import Rules from "@/components/Rules";
 import ApplyForm from "@/components/ApplyForm";
