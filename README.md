@@ -67,6 +67,27 @@ To preview the production build locally:
 yarn preview
 ```
 
+## Using Claude Opus 5.5 from VS Code
+
+The project includes a VS Code task for calling the configured Amazon Bedrock
+inference profile without storing AWS credentials in the repository.
+
+1. Install and authenticate the AWS CLI:
+
+   ```powershell
+   aws configure
+   aws sts get-caller-identity
+   ```
+
+2. Ensure the authenticated AWS identity has `bedrock:Converse` permission and
+   access to the `ap-south-1` region.
+3. In VS Code, open **Terminal > Run Task**, choose **Bedrock: Converse with
+   Claude Opus 5.5**, and enter your prompt.
+
+The response is printed in the task terminal. This task uses the model
+inference profile configured in `.vscode/tasks.json`; it does not change the
+model used by GitHub Copilot Chat.
+
 ### Available scripts
 
 | Command | Purpose |

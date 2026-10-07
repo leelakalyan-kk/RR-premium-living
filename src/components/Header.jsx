@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
-import { ArrowRight, List, X } from "@phosphor-icons/react";
-import { NAV_LINKS } from "@/constants/site";
+import { List, X } from "@phosphor-icons/react";
+import { HEADER_LINKS } from "@/constants/site";
 import { Logo } from "@/components/Logo";
 
 const NavLink = ({ href, label, light, onClick }) => (
@@ -17,25 +17,50 @@ const NavLink = ({ href, label, light, onClick }) => (
   </a>
 );
 
-const ApplyButton = ({ className = "", onClick }) => (
-  <a
-    href="#apply"
-    onClick={onClick}
-    data-testid="header-apply-btn"
-    className={`group inline-flex items-center gap-2 bg-gold px-5 py-2.5 text-sm font-bold text-navy transition-all duration-300 hover:bg-gold-light hover:shadow-[0_8px_24px_rgba(212,175,55,0.35)] ${className}`}
-  >
-    Apply Now
-    <ArrowRight
-      size={15}
-      weight="bold"
-      className="transition-transform duration-300 group-hover:translate-x-1"
-    />
-  </a>
+const AppDownloadMenu = ({ light }) => (
+  <div className="group relative">
+    <a
+      href="/app-download"
+      className={`nav-link inline-flex items-center text-sm font-semibold tracking-wide transition-colors duration-300 ${
+        light ? "text-ivory/85 hover:text-gold-light" : "text-navy/80 hover:text-navy"
+      }`}
+    >
+      App Download+
+    </a>
+    <div className="pointer-events-none invisible absolute left-1/2 top-full z-50 w-44 -translate-x-1/2 pt-4 opacity-0 transition-all duration-200 group-hover:pointer-events-auto group-hover:visible group-hover:opacity-100">
+      <div className="rounded-md border border-navy/10 bg-white p-2 shadow-xl">
+        <a href="/app-download#ios" className="block rounded px-3 py-2 text-sm font-semibold text-navy/80 hover:bg-navy/5 hover:text-navy">iOS App</a>
+        <a href="/app-download#android" className="block rounded px-3 py-2 text-sm font-semibold text-navy/80 hover:bg-navy/5 hover:text-navy">Android App</a>
+      </div>
+    </div>
+  </div>
+);
+
+const BookingMenu = ({ light }) => (
+  <div className="group relative">
+    <a
+      href="/booking/online"
+      data-testid="nav-link-booking"
+      className={`nav-link inline-flex items-center text-sm font-semibold tracking-wide transition-colors duration-300 ${
+        light ? "text-ivory/85 hover:text-gold-light" : "text-navy/80 hover:text-navy"
+      }`}
+    >
+      Book My Stay
+    </a>
+    <div className="pointer-events-none invisible absolute left-1/2 top-full z-50 w-56 -translate-x-1/2 pt-4 opacity-0 transition-all duration-200 group-hover:pointer-events-auto group-hover:visible group-hover:opacity-100">
+      <div className="rounded-md border border-navy/10 bg-white p-2 shadow-xl">
+        <a href="/booking/online" className="block rounded px-3 py-2.5 text-sm font-semibold text-navy/80 hover:bg-navy/5 hover:text-navy">Online Booking</a>
+        <a href="/booking/process" className="block rounded px-3 py-2.5 text-sm font-semibold text-navy/80 hover:bg-navy/5 hover:text-navy">Booking Process</a>
+        <a href="/booking/policies" className="block rounded px-3 py-2.5 text-sm font-semibold text-navy/80 hover:bg-navy/5 hover:text-navy">Guidelines &amp; Policies</a>
+      </div>
+    </div>
+  </div>
 );
 
 export default function Header() {
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
+  const isStandalonePage = window.location.pathname !== "/";
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 40);
@@ -51,14 +76,14 @@ export default function Header() {
     };
   }, [open]);
 
-  const light = !scrolled;
+  const light = !scrolled && !isStandalonePage;
 
   return (
     <>
       <header
         data-testid="site-header"
         className={`fixed inset-x-0 top-0 z-50 transition-all duration-500 ${
-          scrolled
+          scrolled || isStandalonePage
             ? "border-b border-navy/10 bg-white/85 py-0 backdrop-blur-xl"
             : "border-b border-transparent bg-transparent"
         }`}
@@ -66,13 +91,16 @@ export default function Header() {
         <div className="mx-auto flex h-20 max-w-7xl items-center justify-between px-4 md:px-8">
           <Logo light={light} />
           <nav className="hidden items-center gap-8 lg:flex">
-            {NAV_LINKS.map((l) => (
-              <NavLink key={l.href} {...l} light={light} />
+            {HEADER_LINKS.map((l) => (
+              l.label === "App Download+" ? (
+                <AppDownloadMenu key={l.href} light={light} />
+              ) : l.label === "Book My Stay" ? (
+                <BookingMenu key={l.href} light={light} />
+              ) : (
+                <NavLink key={l.href} {...l} light={light} />
+              )
             ))}
           </nav>
-          <div className="hidden lg:block">
-            <ApplyButton />
-          </div>
           <button
             data-testid="header-menu-toggle"
             aria-label="Open menu"
@@ -106,7 +134,7 @@ export default function Header() {
               </button>
             </div>
             <nav className="flex flex-1 flex-col justify-center gap-2 px-8">
-              {[...NAV_LINKS, { label: "Apply Now", href: "#apply" }].map((l, i) => (
+              {HEADER_LINKS.map((l, i) => (
                 <motion.a
                   key={l.href}
                   href={l.href}
@@ -121,9 +149,6 @@ export default function Header() {
                 </motion.a>
               ))}
             </nav>
-            <div className="px-8 pb-10">
-              <ApplyButton className="w-full justify-center py-4 text-base" onClick={() => setOpen(false)} />
-            </div>
           </motion.div>
         )}
       </AnimatePresence>

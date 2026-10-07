@@ -14,9 +14,9 @@ export default function Food() {
           note="Fresh, home-style meals prepared in-house every day — cooked clean, served hot, made for long days."
         />
 
-        <div className="grid grid-cols-1 items-start gap-10 lg:grid-cols-12">
+        <div className="grid grid-cols-1 items-start gap-10 lg:items-stretch lg:grid-cols-12">
           <FadeIn className="lg:col-span-5">
-            <figure className="clip-frame relative overflow-hidden rounded-md">
+            <figure className="clip-frame relative overflow-hidden rounded-2xl">
               <img
                 src={IMAGES.food}
                 alt="Fresh home-style Indian meals served daily"
@@ -26,7 +26,7 @@ export default function Food() {
             </figure>
             <div
               data-testid="menu-note-nonveg"
-              className="mt-6 inline-flex items-center gap-3 bg-gold px-5 py-3.5 text-sm font-bold text-navy"
+              className="mt-6 inline-flex items-center gap-3 rounded-xl bg-gold px-5 py-3.5 text-sm font-bold text-navy"
             >
               <span className="relative flex h-2.5 w-2.5">
                 <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-navy/40" />
@@ -36,45 +36,41 @@ export default function Food() {
             </div>
           </FadeIn>
 
-          <FadeIn delay={0.15} className="lg:col-span-7">
-            <div
-              data-testid="menu-table-wrap"
-              className="overflow-hidden rounded-md border border-white/10 bg-white/[0.04] p-4 backdrop-blur-sm md:p-6"
-            >
-              <div className="overflow-x-auto">
-                <table className="menu-table" data-testid="menu-table">
-                  <thead>
-                    <tr>
-                      <th>Day</th>
-                      <th>Breakfast</th>
-                      <th>Lunch</th>
-                      <th>Dinner</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    {MENU.map((m) => (
-                      <tr key={m.day} data-testid={`menu-row-${m.day.toLowerCase()}`}>
-                        <td className="menu-day">{m.day}</td>
-                        <td>{m.breakfast}</td>
-                        <td>{m.lunch}</td>
-                        <td>
-                          {m.dinner}
-                          {m.nonVeg && (
-                            <span
-                              className="ml-2 inline-block h-2 w-2 rounded-full bg-gold align-middle"
-                              title="Non-veg day"
-                            />
-                          )}
-                        </td>
+          <FadeIn delay={0.15} className="lg:col-span-7 lg:flex lg:flex-col">
+            <div className="flex flex-1 flex-col">
+              <div className="mt-8 flex flex-1 flex-col overflow-hidden rounded-2xl lg:mt-0">
+                <div className="flex flex-1 overflow-x-auto">
+                  <table className="menu-table h-full" data-testid="menu-table">
+                    <thead>
+                      <tr>
+                        <th>Day</th>
+                        <th>Breakfast</th>
+                        <th>Lunch</th>
+                        <th>Dinner</th>
                       </tr>
-                    ))}
-                  </tbody>
-                </table>
+                    </thead>
+                    <tbody>
+                      {MENU.map((m) => (
+                        <tr key={m.day} data-testid={`menu-row-${m.day.toLowerCase()}`}>
+                          <td className="menu-day">{m.day}</td>
+                          <td>{m.breakfast}</td>
+                          <td>{m.lunch}</td>
+                          <td>
+                            {m.dinner}
+                            {m.nonVeg && (
+                              <span className="ml-2 inline-block h-2 w-2 rounded-full bg-gold align-middle" title="Chicken curry day" />
+                            )}
+                          </td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                </div>
+                <p className="mt-4 flex items-center gap-2 px-1 text-xs text-ivory/50">
+                  <span className="inline-block h-2 w-2 rounded-full bg-gold" />
+                  Chicken curry is served on Wednesday and Sunday dinner.
+                </p>
               </div>
-              <p className="mt-4 flex items-center gap-2 px-1 text-xs text-ivory/50">
-                <span className="inline-block h-2 w-2 rounded-full bg-gold" />
-                Non-veg day — sample weekly menu, refreshed regularly.
-              </p>
             </div>
           </FadeIn>
         </div>

@@ -34,7 +34,7 @@ export const LogoMark = ({ size = 42 }) => (
 
 export const Logo = ({ light = false }) => (
   <a
-    href="#home"
+    href="/"
     data-testid="logo-link"
     className="flex items-center gap-3 group"
     aria-label="RR Premium Living — Home"

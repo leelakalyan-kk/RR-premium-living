@@ -8,7 +8,7 @@ const LOCATIONS = [
     city: "Hyderabad",
     image: IMAGES.hyderabad,
     span: "lg:col-span-7",
-    height: "h-[420px] md:h-[540px]",
+    height: "h-[280px] md:h-[360px]",
     index: "01",
     blurb:
       "Well-connected neighbourhoods close to campuses and tech corridors — a calm, premium base in the City of Pearls.",
@@ -18,7 +18,7 @@ const LOCATIONS = [
     city: "Bangalore",
     image: IMAGES.bangalore,
     span: "lg:col-span-5",
-    height: "h-[420px] md:h-[540px]",
+    height: "h-[280px] md:h-[360px]",
     index: "02",
     blurb:
       "Premium co-living in India's garden city — built for students and professionals who want comfort without compromise.",
@@ -38,9 +38,10 @@ export default function Locations() {
         <div className="grid grid-cols-1 gap-6 lg:grid-cols-12">
           {LOCATIONS.map((loc, i) => (
             <FadeIn key={loc.id} delay={i * 0.12} className={loc.span}>
-              <article
+              <a
+                href="/locations"
                 data-testid={`location-card-${loc.id}`}
-                className={`loc-card group relative overflow-hidden rounded-md ${loc.height}`}
+                className={`loc-card group relative block overflow-hidden rounded-2xl ${loc.height}`}
               >
                 <img
                   src={loc.image}
@@ -48,7 +49,7 @@ export default function Locations() {
                   className="absolute inset-0 h-full w-full object-cover transition-transform duration-[1.2s] ease-out group-hover:scale-[1.06]"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-navy/95 via-navy/35 to-navy/10 transition-opacity duration-700 group-hover:opacity-95" />
-                <span className="corner-line absolute inset-x-0 top-0 z-10 h-[3px] bg-gold" />
+                <span className="pointer-events-none absolute inset-3 z-10 rounded-xl border border-gold/75" />
                 <span className="absolute right-6 top-6 font-display text-sm font-bold tracking-[0.3em] text-ivory/60">
                   {loc.index}
                 </span>
@@ -59,14 +60,14 @@ export default function Locations() {
                   <h3 className="font-display text-4xl font-extrabold tracking-tight text-ivory md:text-5xl">
                     {loc.city}
                   </h3>
-                  <p className="mt-3 max-w-md text-sm leading-relaxed text-ivory/75 opacity-0 transition-all duration-700 group-hover:opacity-100 md:translate-y-2 md:group-hover:translate-y-0">
+                  <p className="mt-3 max-w-md text-sm leading-relaxed text-ivory/75 opacity-0 transition-all duration-700 md:translate-y-2 md:group-hover:opacity-100 md:group-hover:translate-y-0">
                     {loc.blurb}
                   </p>
                   <p className="mt-4 text-[11px] font-bold uppercase tracking-[0.28em] text-ivory/55">
-                    Men's · Women's · Co-living
+                    View PG properties
                   </p>
                 </div>
-              </article>
+              </a>
             </FadeIn>
           ))}
         </div>

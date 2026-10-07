@@ -2,7 +2,7 @@ import { EnvelopeSimple, FacebookLogo, InstagramLogo, Phone } from "@phosphor-ic
 import { LogoMark } from "@/components/Logo";
 import { CONTACT_EMAIL, CONTACT_PHONE_DISPLAY, NAV_LINKS } from "@/constants/site";
 
-export default function Footer() {
+export default function Footer({ property }) {
   const year = new Date().getFullYear();
   return (
     <footer data-testid="site-footer" className="relative overflow-hidden bg-navy-deep text-ivory">
@@ -17,8 +17,9 @@ export default function Footer() {
               </p>
             </div>
             <p className="mt-5 max-w-sm text-sm leading-relaxed text-ivory/55">
-              Premium PG &amp; co-living spaces for students and working professionals — in
-              Hyderabad and Bangalore.
+              {property
+                ? `${property.name} is part of RR Premium Living — premium PG and co-living spaces built for comfortable, well-managed living.`
+                : "Premium PG & co-living spaces for students and working professionals — in Hyderabad and Bangalore."}
             </p>
             <div className="mt-7 flex items-center gap-3">
               <a

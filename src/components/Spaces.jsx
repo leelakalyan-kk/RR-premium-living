@@ -1,8 +1,15 @@
-import { ArrowRight, Check } from "@phosphor-icons/react";
+import { ArrowRight, Bed, BuildingOffice, Check, Sparkle, Users } from "@phosphor-icons/react";
 import SectionHead, { FadeIn } from "@/components/SectionHead";
-import { SPACES } from "@/constants/site";
+import { PROPERTY_STATS, SPACES } from "@/constants/site";
 
 export default function Spaces() {
+  const statIcons = {
+    properties: BuildingOffice,
+    amenities: Sparkle,
+    residents: Users,
+    "beds-in-progress": Bed,
+  };
+
   return (
     <section id="spaces" data-testid="spaces-section" className="bg-ivory py-24 md:py-32">
       <div className="mx-auto max-w-7xl px-4 md:px-8">
@@ -12,12 +19,36 @@ export default function Spaces() {
           title="A space for every kind of living."
           note="Three ways to live with RR Premium Living — comfort-first, community-driven, and always well cared for."
         />
+        <div className="mb-10 grid grid-cols-2 gap-3 md:grid-cols-4 md:gap-4">
+          {PROPERTY_STATS.map((stat) => (
+            <div
+              key={stat.id}
+              className="rounded-2xl border border-navy/10 bg-white px-4 py-6 text-center shadow-sm transition-colors hover:border-gold/60 md:px-6 md:py-7"
+            >
+              {(() => {
+                const Icon = statIcons[stat.id];
+                return (
+                  <span className="mx-auto mb-3 flex h-10 w-10 items-center justify-center rounded-full border border-gold/50 bg-gold/10 text-gold-deep">
+                    <Icon size={20} weight="duotone" />
+                  </span>
+                );
+              })()}
+              <p className="font-display text-3xl font-extrabold tracking-tight text-navy md:text-4xl">
+                {stat.value}
+              </p>
+              <p className="mt-2 text-[10px] font-bold uppercase tracking-[0.2em] text-navy/55 md:text-xs">
+                {stat.label}
+              </p>
+            </div>
+          ))}
+        </div>
         <div className="grid grid-cols-1 gap-6 md:grid-cols-3">
           {SPACES.map((s, i) => (
             <FadeIn key={s.id} delay={i * 0.12} className="h-full">
-              <article
+              <a
+                href={`/locations?space=${s.id}`}
                 data-testid={`space-card-${s.id}`}
-                className="group flex h-full flex-col overflow-hidden rounded-md border border-navy/10 bg-white transition-all duration-500 hover:-translate-y-2 hover:border-gold/60 hover:shadow-[0_24px_60px_rgba(11,19,43,0.12)]"
+                className="group flex h-full flex-col overflow-hidden rounded-2xl border border-navy/10 bg-white transition-all duration-500 hover:-translate-y-2 hover:border-gold/60 hover:shadow-[0_24px_60px_rgba(11,19,43,0.12)]"
               >
                 <div className="relative h-60 overflow-hidden">
                   <img
@@ -26,9 +57,6 @@ export default function Spaces() {
                     className="h-full w-full object-cover transition-transform duration-[1.2s] ease-out group-hover:scale-[1.07]"
                   />
                   <span className="absolute inset-x-0 bottom-0 h-16 bg-gradient-to-t from-white to-transparent" />
-                  <span className="absolute left-5 top-5 border border-ivory/40 bg-navy/60 px-3 py-1.5 text-[10px] font-bold uppercase tracking-[0.26em] text-ivory backdrop-blur-sm">
-                    0{i + 1}
-                  </span>
                 </div>
                 <div className="flex flex-1 flex-col p-7">
                   <h3 className="font-display text-2xl font-extrabold tracking-tight text-navy">
@@ -45,20 +73,11 @@ export default function Spaces() {
                       </li>
                     ))}
                   </ul>
-                  <a
-                    href="#apply"
-                    data-testid={`space-apply-link-${s.id}`}
-                    className="mt-auto inline-flex items-center gap-2 pt-7 text-sm font-bold uppercase tracking-[0.16em] text-navy transition-colors hover:text-gold-deep"
-                  >
-                    Apply for this space
-                    <ArrowRight
-                      size={15}
-                      weight="bold"
-                      className="transition-transform duration-300 group-hover:translate-x-1.5"
-                    />
-                  </a>
+                  <span className="mt-auto flex items-center gap-2 pt-7 text-xs font-bold uppercase tracking-[0.16em] text-gold-deep">
+                    Explore spaces <ArrowRight size={15} weight="bold" />
+                  </span>
                 </div>
-              </article>
+              </a>
             </FadeIn>
           ))}
         </div>

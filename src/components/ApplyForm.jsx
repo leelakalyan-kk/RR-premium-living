@@ -1,9 +1,6 @@
-import { useRef, useState } from "react";
 import { toast } from "sonner";
 import {
   ArrowRight,
-  CheckCircle,
-  FileArrowUp,
   Phone,
   EnvelopeSimple,
 } from "@phosphor-icons/react";
@@ -16,43 +13,6 @@ const STEPS = [
   "Visit the space, complete your advance & deposit, and move in.",
 ];
 
-const FileCard = ({ id, label, accept, file, onPick, testid }) => {
-  const ref = useRef(null);
-  return (
-    <div>
-      <input
-        ref={ref}
-        id={id}
-        type="file"
-        accept={accept}
-        className="hidden"
-        data-testid={testid}
-        onChange={(e) => onPick(e.target.files?.[0] || null)}
-      />
-      <button
-        type="button"
-        data-testid={`${testid}-card`}
-        onClick={() => ref.current?.click()}
-        className={`file-card w-full text-left ${file ? "filled" : ""}`}
-      >
-        <span
-          className={`flex h-10 w-10 shrink-0 items-center justify-center rounded-full transition-colors ${
-            file ? "bg-gold text-navy" : "bg-navy/5 text-navy/60"
-          }`}
-        >
-          {file ? <CheckCircle size={20} weight="fill" /> : <FileArrowUp size={20} />}
-        </span>
-        <span className="min-w-0">
-          <span className="block text-sm font-bold text-navy">{label}</span>
-          <span className="block truncate text-xs text-navy/55" data-testid={`${testid}-name`}>
-            {file ? `${file.name} · ${(file.size / 1024).toFixed(0)} KB` : "Click to upload"}
-          </span>
-        </span>
-      </button>
-    </div>
-  );
-};
-
 const buildMessage = (d) =>
   [
     "New Application — RR Premium Living",
@@ -60,18 +20,14 @@ const buildMessage = (d) =>
     `Full Name: ${d.name}`,
     `Age: ${d.age}`,
     `Gender: ${d.gender}`,
+    `Preferred Location: ${d.location}`,
     `Mobile: ${d.mobile}`,
-    `Current Place / Address: ${d.address}`,
-    `ID Proof: ${d.idName}`,
-    `Photo: ${d.photoName}`,
+    `Email: ${d.email}`,
+    `Query: ${d.address}`,
     "------------------------------------",
-    "Documents will be shared once we connect.",
   ].join("\n");
 
 export default function ApplyForm() {
-  const [idFile, setIdFile] = useState(null);
-  const [photoFile, setPhotoFile] = useState(null);
-
   const readForm = (form) => {
     const fd = new FormData(form);
     const mobile = String(fd.get("mobile") || "").replace(/\D/g, "");
@@ -79,10 +35,10 @@ export default function ApplyForm() {
       name: String(fd.get("name") || "").trim(),
       age: String(fd.get("age") || "").trim(),
       gender: String(fd.get("gender") || "").trim(),
+      location: String(fd.get("location") || "").trim(),
       mobile,
+      email: String(fd.get("email") || "").trim(),
       address: String(fd.get("address") || "").trim(),
-      idName: idFile?.name || "To be shared",
-      photoName: photoFile?.name || "To be shared",
     };
   };
 
@@ -130,6 +86,7 @@ export default function ApplyForm() {
         <SectionHead
           index="06"
           eyebrow="Apply Now / Contact Us"
+          meta={<a href={`mailto:${CONTACT_EMAIL}`} className="normal-case tracking-normal text-navy/60 hover:text-gold-deep">{CONTACT_EMAIL}</a>}
           title="Ready to move in?"
           note="Share your details and we will get back to you within 24 hours."
         />
@@ -167,10 +124,6 @@ export default function ApplyForm() {
                 >
                   <EnvelopeSimple size={18} className="text-gold" /> {CONTACT_EMAIL}
                 </a>
-                <p className="pt-1 text-xs leading-relaxed text-ivory/45">
-                  ID proof &amp; photo help us verify your application. Your details are shared
-                  only with our admissions team.
-                </p>
               </div>
             </aside>
           </FadeIn>
@@ -183,7 +136,7 @@ export default function ApplyForm() {
               className="rounded-md border border-navy/10 bg-white p-7 md:p-10"
             >
               <div className="grid grid-cols-1 gap-5 sm:grid-cols-2">
-                <div className="sm:col-span-2">
+                <div>
                   <label htmlFor="apply-name" className="mb-2 block text-xs font-bold uppercase tracking-[0.18em] text-navy/70">
                     Full Name *
                   </label>
@@ -208,7 +161,7 @@ export default function ApplyForm() {
                     max="99"
                     required
                     placeholder="e.g. 21"
-                    className="field-input"
+                    className="field-input age-input"
                     data-testid="apply-input-age"
                   />
                 </div>
@@ -232,7 +185,26 @@ export default function ApplyForm() {
                     <option value="Other">Other</option>
                   </select>
                 </div>
-                <div className="sm:col-span-2">
+                <div>
+                  <label htmlFor="apply-location" className="mb-2 block text-xs font-bold uppercase tracking-[0.18em] text-navy/70">
+                    Preferred Location *
+                  </label>
+                  <select
+                    id="apply-location"
+                    name="location"
+                    required
+                    defaultValue=""
+                    className="field-input"
+                    data-testid="apply-input-location"
+                  >
+                    <option value="" disabled>
+                      Select your preferred location
+                    </option>
+                    <option value="Hyderabad">Hyderabad</option>
+                    <option value="Bangalore">Bangalore</option>
+                  </select>
+                </div>
+                <div>
                   <label htmlFor="apply-mobile" className="mb-2 block text-xs font-bold uppercase tracking-[0.18em] text-navy/70">
                     Mobile Number *
                   </label>
@@ -240,6 +212,9 @@ export default function ApplyForm() {
                     id="apply-mobile"
                     name="mobile"
                     type="tel"
+                    inputMode="numeric"
+                    pattern="[0-9]{10}"
+                    maxLength={10}
                     required
                     inputMode="numeric"
                     maxLength={10}
@@ -248,43 +223,41 @@ export default function ApplyForm() {
                     data-testid="apply-input-mobile"
                   />
                 </div>
+                <div>
+                  <label htmlFor="apply-email" className="mb-2 block text-xs font-bold uppercase tracking-[0.18em] text-navy/70">
+                    Email *
+                  </label>
+                  <input
+                    id="apply-email"
+                    name="email"
+                    type="email"
+                    required
+                    placeholder="you@example.com"
+                    className="field-input"
+                    data-testid="apply-input-email"
+                  />
+                </div>
                 <div className="sm:col-span-2">
                   <label htmlFor="apply-address" className="mb-2 block text-xs font-bold uppercase tracking-[0.18em] text-navy/70">
-                    Current Place / Address *
+                    Query *
                   </label>
                   <textarea
                     id="apply-address"
                     name="address"
                     required
                     rows={3}
-                    placeholder="Where do you currently live?"
+                    placeholder="Enter your query"
                     className="field-input resize-none"
                     data-testid="apply-input-address"
                   />
                 </div>
-                <FileCard
-                  id="apply-id"
-                  testid="apply-file-id"
-                  label="ID Proof *"
-                  accept="image/*,.pdf"
-                  file={idFile}
-                  onPick={setIdFile}
-                />
-                <FileCard
-                  id="apply-photo"
-                  testid="apply-file-photo"
-                  label="Photo *"
-                  accept="image/*"
-                  file={photoFile}
-                  onPick={setPhotoFile}
-                />
               </div>
 
               <div className="mt-8 flex flex-col gap-4 border-t border-navy/10 pt-7 sm:flex-row sm:items-center">
                 <button
                   type="submit"
                   data-testid="apply-submit-whatsapp"
-                  className="group inline-flex flex-1 items-center justify-center gap-3 bg-gold px-8 py-4 text-sm font-bold uppercase tracking-[0.14em] text-navy transition-all duration-300 hover:bg-gold-light hover:shadow-[0_14px_40px_rgba(212,175,55,0.35)]"
+                  className="group inline-flex flex-1 items-center justify-center gap-3 rounded-xl bg-gold px-8 py-4 text-sm font-bold uppercase tracking-[0.14em] text-navy transition-all duration-300 hover:bg-gold-light hover:shadow-[0_14px_40px_rgba(212,175,55,0.35)]"
                 >
                   Submit via WhatsApp
                   <ArrowRight

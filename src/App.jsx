@@ -12,6 +12,13 @@ import Food from "@/components/Food";
 import Rules from "@/components/Rules";
 import ApplyForm from "@/components/ApplyForm";
 import Footer from "@/components/Footer";
+import LocationsPage from "@/components/LocationsPage";
+import BookingPage from "@/components/BookingPage";
+import ContactPage from "@/components/ContactPage";
+import FaqsPage from "@/components/FaqsPage";
+import AppDownloadPage from "@/components/AppDownloadPage";
+import LocationDetailPage from "@/components/LocationDetailPage";
+import { LOCATION_PROPERTIES } from "@/constants/site";
 
 class ErrorBoundary extends Component {
   constructor(props) {
@@ -36,6 +43,12 @@ class ErrorBoundary extends Component {
 }
 
 function App() {
+  const isLocationsPage = window.location.pathname === "/locations";
+  const locationDetailId = window.location.pathname.match(/^\/locations\/([^/]+)$/)?.[1];
+  const locationDetail = LOCATION_PROPERTIES.find((property) => property.id === locationDetailId);
+  const standalonePage = window.location.pathname;
+  const bookingType = window.location.pathname.match(/^\/booking\/(online|process|policies)$/)?.[1];
+
   useEffect(() => {
     const lenis = new Lenis({ lerp: 0.09, smoothWheel: true });
     let rafId;
@@ -67,17 +80,35 @@ function App() {
   return (
     <ErrorBoundary>
       <Header />
-      <main>
-        <Hero />
-        <EditorialMarquee />
-        <Locations />
-        <Spaces />
-        <Amenities />
-        <Food />
-        <Rules />
-        <ApplyForm />
-      </main>
-      <Footer />
+      <div className="relative">
+        {locationDetail ? (
+          <LocationDetailPage property={locationDetail} />
+        ) : isLocationsPage ? (
+          <LocationsPage />
+        ) : standalonePage === "/contact" ? (
+          <ContactPage />
+        ) : standalonePage === "/faqs" ? (
+          <FaqsPage />
+        ) : standalonePage === "/app-download" ? (
+          <AppDownloadPage />
+        ) : bookingType ? (
+          <BookingPage type={bookingType} />
+        ) : (
+          <>
+            <main className="relative">
+              <Hero />
+              <EditorialMarquee />
+              <Locations />
+              <Spaces />
+              <Amenities />
+              <Food />
+              <Rules />
+              <ApplyForm />
+            </main>
+            <Footer />
+          </>
+        )}
+      </div>
       <Toaster position="top-center" richColors closeButton />
     </ErrorBoundary>
   );

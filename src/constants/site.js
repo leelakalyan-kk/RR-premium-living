@@ -1,14 +1,24 @@
 export const WHATSAPP_NUMBER = "919000000000";
-export const CONTACT_PHONE_DISPLAY = "+91 90000 000000";
+export const CONTACT_PHONE_DISPLAY = "+91 90000 00000";
 export const CONTACT_EMAIL = "info@rrpremiumliving.com";
 
 export const NAV_LINKS = [
-  { label: "Home", href: "#home" },
-  { label: "Locations", href: "#locations" },
+  { label: "Home", href: "/" },
+  { label: "Locations", href: "/locations" },
   { label: "Spaces", href: "#spaces" },
   { label: "Amenities", href: "#amenities" },
   { label: "Food", href: "#food" },
   { label: "Rules", href: "#rules" },
+];
+
+export const HEADER_LINKS = [
+  { label: "Home", href: "/" },
+  { label: "Locations", href: "/locations" },
+  { label: "Spaces", href: "/#spaces" },
+  { label: "App Download+", href: "/app-download" },
+  { label: "Book My Stay", href: "/booking/online" },
+  { label: "Contact", href: "/contact" },
+  { label: "FAQs", href: "/faqs" },
 ];
 
 export const IMAGES = {
@@ -37,6 +47,20 @@ export const MARQUEE_ITEMS = [
   "Co-living",
   "Hygienic Food",
   "24/7 Security",
+  "Open Kitchen",
+  "Fully Equipped Gym",
+  "Laundry & Washing Machines",
+  "Geysers — Hot Water",
+  "RO Drinking Water Purifiers",
+  "Daily Housekeeping",
+  "24/7 Water Supply",
+  "CCTV Surveillance",
+  "24/7 Security Guard",
+  "Ample Parking",
+  "High-Speed Wi-Fi",
+  "Lift Access",
+  "AC & Non-AC Rooms",
+  "Play Area with Indoor Games",
 ];
 
 export const SPACES = [
@@ -63,18 +87,86 @@ export const SPACES = [
   },
 ];
 
+export const PROPERTY_STATS = [
+  { id: "properties", label: "Properties", value: "2+" },
+  { id: "amenities", label: "Amenities", value: "18+" },
+  { id: "residents", label: "Residents", value: "300+" },
+  { id: "beds-in-progress", label: "Beds in Progress", value: "400+" },
+];
+
+export const LOCATION_PROPERTIES = [
+  {
+    id: "rr-gachibowli",
+    name: "RR Gachibowli Heights",
+    location: "Gachibowli, Hyderabad",
+    image: IMAGES.hyderabad,
+    audience: "male",
+    audienceLabel: "For Men",
+    sharing: [1, 2, 3, 4],
+    airConditioning: ["AC", "Non-AC"],
+    details: "Quiet, fully furnished rooms close to Hyderabad's tech corridor.",
+    contact: { name: "Gachibowli Admissions", phone: "+91 90000 00001", email: "gachibowli@rrpremiumliving.com" },
+    counts: { joined: "120+", floors: "6", amenities: "25+", security: "24/7" },
+    exclusive: ["Study-friendly rooms", "Daily housekeeping", "High-speed Wi-Fi"],
+    nearby: ["Gachibowli Circle · 500m", "Financial District · 1.2km", "ISB Road · 2.4km"],
+    mapUrl: "https://www.google.com/maps?q=Gachibowli%2C%20Hyderabad",
+    gallery: [IMAGES.hyderabad, IMAGES.mens, IMAGES.kitchen],
+    food: ["Idli, Sambar, Chutney", "Rice, Dal, Veg Curry, Curd", "Chapati, Paneer Curry"],
+    residents: ["The rooms are calm, clean, and close to everything I need.", "The support team made moving in very easy."],
+  },
+  {
+    id: "rr-madhapur",
+    name: "RR Madhapur Living",
+    location: "Madhapur, Hyderabad",
+    image: IMAGES.mens,
+    audience: "female",
+    audienceLabel: "For Women",
+    sharing: [1, 2, 3],
+    airConditioning: ["AC", "Non-AC"],
+    details: "Secure women-focused living with easy access to offices and campuses.",
+    contact: { name: "Madhapur Admissions", phone: "+91 90000 00002", email: "madhapur@rrpremiumliving.com" },
+    counts: { joined: "95+", floors: "5", amenities: "23+", security: "24/7" },
+    exclusive: ["Women-focused security", "Homely meals", "Daily housekeeping"],
+    nearby: ["Madhapur Metro · 500m", "Ayyappa Society · 900m", "HITEC City · 1.8km"],
+    mapUrl: "https://www.google.com/maps?q=Madhapur%2C%20Hyderabad",
+    gallery: [IMAGES.mens, IMAGES.womens, IMAGES.kitchen],
+    food: ["Dosa, Chutney", "Rice, Sambar, Potato Fry", "Chapati, Dal Fry"],
+    residents: ["It feels safe, warm, and genuinely well managed.", "The location makes my daily commute simple."],
+  },
+  {
+    id: "rr-whitefield",
+    name: "RR Whitefield House",
+    location: "Whitefield, Bangalore",
+    image: IMAGES.bangalore,
+    audience: "co-living",
+    audienceLabel: "Co-living",
+    sharing: [2, 4],
+    airConditioning: ["AC", "Non-AC"],
+    details: "Community-first co-living with comfortable rooms and shared spaces.",
+    contact: { name: "Whitefield Admissions", phone: "+91 90000 00003", email: "whitefield@rrpremiumliving.com" },
+    counts: { joined: "140+", floors: "7", amenities: "28+", security: "24/7" },
+    exclusive: ["Open kitchen", "Community events", "Play area & indoor games"],
+    nearby: ["ITPL Main Road · 500m", "Phoenix Marketcity · 1.5km", "Whitefield Metro · 2km"],
+    mapUrl: "https://www.google.com/maps?q=Whitefield%2C%20Bangalore",
+    gallery: [IMAGES.bangalore, IMAGES.coliving, IMAGES.kitchen],
+    food: ["Poha, Tea", "Veg Pulao, Raita", "Fried Rice, Manchurian"],
+    residents: ["The community makes a new city feel like home.", "I love the shared spaces and easy access to work."],
+  },
+];
+
 export const AMENITIES = [
-  { id: "kitchen", label: "Open Kitchen", icon: "CookingPot" },
-  { id: "gym", label: "Fully Equipped Gym", icon: "Barbell" },
-  { id: "laundry", label: "Laundry & Washing Machines", icon: "WashingMachine" },
-  { id: "geysers", label: "Geysers — Hot Water", icon: "FireSimple" },
-  { id: "ro", label: "RO Drinking Water Purifiers", icon: "Drop" },
-  { id: "housekeeping", label: "Daily Housekeeping", icon: "Sparkle" },
-  { id: "water", label: "24/7 Water Supply", icon: "Timer" },
-  { id: "cctv", label: "CCTV Surveillance", icon: "VideoCamera" },
-  { id: "guard", label: "24/7 Security Guard", icon: "ShieldCheck" },
-  { id: "parking", label: "Ample Parking", icon: "Car" },
-  { id: "games", label: "Play Area with Indoor Games", icon: "GamepadController" },
+  { id: "laundry", label: "Laundry & Washing Machines", icon: "WashingMachine", info: "Convenient washing facilities help residents keep daily routines simple.", image: "https://images.unsplash.com/photo-1582735689369-4fe89db7114c?auto=format&fit=crop&w=600&q=80" },
+  { id: "geysers", label: "Geysers — Hot Water", icon: "FireSimple", info: "Reliable hot water is available for comfortable mornings and evenings.", image: "/hot-water.png" },
+  { id: "ro", label: "RO Drinking Water Purifiers", icon: "Drop", info: "Clean, filtered drinking water is available for residents throughout the day.", image: "/ro-water.png" },
+  { id: "housekeeping", label: "Daily Housekeeping", icon: "Sparkle", info: "Shared spaces and rooms are maintained with consistent daily care.", image: "https://images.unsplash.com/photo-1581578731548-c64695cc6952?auto=format&fit=crop&w=600&q=80" },
+  { id: "water", label: "24/7 Water Supply", icon: "Timer", info: "A dependable water supply keeps everyday living comfortable and uninterrupted.", image: "/water-supply.png" },
+  { id: "cctv", label: "CCTV Surveillance", icon: "VideoCamera", info: "Monitored common areas add an extra layer of visibility and security.", image: "/cctv.png" },
+  { id: "guard", label: "24/7 Security Guard", icon: "ShieldCheck", info: "On-site security support helps residents feel safe around the clock.", image: "/security-guard.png" },
+  { id: "parking", label: "Ample Parking", icon: "Bicycle", info: "Dedicated parking makes two-wheeler access easy for residents and visitors.", image: "/parking.png" },
+  { id: "wifi", label: "High-Speed Wi-Fi", icon: "WifiHigh", info: "Stay connected for study, work, streaming, and everyday communication.", image: "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=600&q=80" },
+  { id: "lift", label: "Lift Access", icon: "Elevator", info: "Lift access makes moving between floors convenient for everyone.", image: "/lift.png" },
+  { id: "ac", label: "AC & Non-AC Rooms", icon: "Snowflake", info: "Choose a room style that matches your comfort and budget preferences.", image: IMAGES.hero },
+  { id: "games", label: "Play Area with Indoor Games", icon: "Crown", info: "Relax and connect with fellow residents through indoor games and leisure time.", image: "https://images.unsplash.com/photo-1610890716171-6b1bb98ffd09?auto=format&fit=crop&w=600&q=80" },
 ];
 
 export const MENU = [
@@ -89,15 +181,15 @@ export const MENU = [
     day: "Tuesday",
     breakfast: "Poha, Tea",
     lunch: "Rice, Sambar, Potato Fry",
-    dinner: "Chapati, Chicken Curry",
-    nonVeg: true,
+    dinner: "Chapati, Dal Fry",
+    nonVeg: false,
   },
   {
     day: "Wednesday",
     breakfast: "Upma, Fresh Fruit",
     lunch: "Veg Pulao, Raita",
-    dinner: "Chapati, Dal Fry",
-    nonVeg: false,
+    dinner: "Chapati, Chicken Curry",
+    nonVeg: true,
   },
   {
     day: "Thursday",
@@ -110,8 +202,8 @@ export const MENU = [
     day: "Friday",
     breakfast: "Poori, Bhaji",
     lunch: "Rice, Sambar, Beans Fry",
-    dinner: "Chicken Biryani, Raita",
-    nonVeg: true,
+    dinner: "Chapati, Mixed Veg Curry",
+    nonVeg: false,
   },
   {
     day: "Saturday",
@@ -124,8 +216,8 @@ export const MENU = [
     day: "Sunday",
     breakfast: "Masala Dosa",
     lunch: "Special Thali — Rice, 2 Curries, Sweet",
-    dinner: "Veg Fried Rice, Noodles",
-    nonVeg: false,
+    dinner: "Chicken Curry, Rice",
+    nonVeg: true,
   },
 ];
 

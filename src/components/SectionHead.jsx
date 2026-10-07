@@ -2,7 +2,7 @@ import { motion } from "framer-motion";
 
 const EASE = [0.16, 1, 0.3, 1];
 
-const SectionHead = ({ index, eyebrow, title, note, dark = false }) => (
+const SectionHead = ({ index, eyebrow, title, note, dark = false, meta }) => (
   <div className="mb-12 md:mb-16">
     <motion.div
       initial={{ opacity: 0, y: 18 }}
@@ -14,6 +14,7 @@ const SectionHead = ({ index, eyebrow, title, note, dark = false }) => (
       }`}
     >
       <span>{index}</span>
+      {meta}
       <span className={`h-px w-12 ${dark ? "bg-gold/60" : "bg-gold-deep/50"}`} />
       <span className={dark ? "text-ivory/60" : "text-navy/50"}>{eyebrow}</span>
     </motion.div>

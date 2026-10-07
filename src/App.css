@@ -1,7 +1,7 @@
 /* RR Premium Living — custom surface treatments */
 
 .marquee-track {
-  animation: marquee-scroll 24s linear infinite;
+  animation: marquee-scroll 48s linear infinite;
 }
 
 .marquee-track:hover {
@@ -38,6 +38,7 @@
   position: absolute;
   inset: 14px;
   border: 1px solid rgba(212, 175, 55, 0.55);
+  border-radius: 1rem;
   pointer-events: none;
   z-index: 2;
 }
@@ -74,6 +75,14 @@
   outline: none;
   transition: border-color 0.25s ease, box-shadow 0.25s ease;
   border-radius: 4px;
+}
+.age-input::-webkit-inner-spin-button,
+.age-input::-webkit-outer-spin-button {
+  appearance: none;
+  margin: 0;
+}
+.age-input {
+  -moz-appearance: textfield;
 }
 .field-input::placeholder {
   color: rgba(11, 19, 43, 0.35);
@@ -123,17 +132,16 @@ select.field-input {
   letter-spacing: 0.22em;
   text-transform: uppercase;
   color: #d4af37;
-  padding: 0 1.1rem 0.9rem;
+  padding: 0 0.85rem 0.85rem;
   border-bottom: 1px solid rgba(212, 175, 55, 0.35);
   white-space: nowrap;
 }
 .menu-table td {
-  padding: 0.95rem 1.1rem;
+  padding: 0.9rem 0.85rem;
   border-bottom: 1px solid rgba(255, 255, 255, 0.09);
   font-size: 0.9rem;
   color: rgba(240, 239, 235, 0.85);
   vertical-align: top;
-  min-width: 150px;
 }
 .menu-table tbody tr {
   transition: background-color 0.25s ease;

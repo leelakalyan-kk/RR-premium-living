@@ -6,7 +6,7 @@ import { IMAGES } from "@/constants/site";
 const EASE = [0.16, 1, 0.3, 1];
 
 const MaskedLine = ({ children, delay, className = "" }) => (
-  <span className="block overflow-hidden pb-[0.08em] -mb-[0.08em]">
+  <span className="block overflow-visible pb-[0.32em] -mb-[0.32em]">
     <motion.span
       initial={{ y: "115%" }}
       animate={{ y: 0 }}
@@ -50,7 +50,7 @@ export default function Hero() {
           initial={{ opacity: 0, y: 16 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.15, ease: EASE }}
-          className="mb-6 inline-flex items-center gap-3 border border-ivory/25 px-4 py-2 text-[11px] font-bold uppercase tracking-[0.3em] text-ivory/80"
+          className="mb-6 inline-flex items-center gap-3 rounded-full border border-ivory/25 px-4 py-2 text-[11px] font-bold uppercase tracking-[0.3em] text-ivory/80"
         >
           <span className="h-1.5 w-1.5 rounded-full bg-gold" />
           PG &amp; Co-living · Hyderabad / Bangalore
@@ -72,7 +72,7 @@ export default function Hero() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.9, delay: 0.85, ease: EASE }}
-          className="mt-7 max-w-xl text-base leading-relaxed text-ivory/80 md:text-lg"
+          className="mt-9 max-w-xl text-base leading-relaxed text-ivory/80 md:text-lg"
         >
           Premium co-living spaces for Students &amp; Working Professionals.
         </motion.p>
@@ -81,12 +81,12 @@ export default function Hero() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.9, delay: 1, ease: EASE }}
-          className="mt-10 flex flex-wrap items-center gap-4"
+          className="mt-12 flex flex-wrap items-center gap-4"
         >
           <a
-            href="#apply"
+            href="/locations"
             data-testid="hero-cta-book"
-            className="group inline-flex items-center gap-3 bg-gold px-8 py-4 text-sm font-bold uppercase tracking-[0.14em] text-navy transition-all duration-300 hover:bg-gold-light hover:shadow-[0_14px_40px_rgba(212,175,55,0.4)]"
+            className="group inline-flex items-center gap-3 rounded-xl bg-gold px-8 py-4 text-sm font-bold uppercase tracking-[0.14em] text-navy transition-all duration-300 hover:bg-gold-light hover:shadow-[0_14px_40px_rgba(212,175,55,0.4)]"
           >
             Book Your Space
             <ArrowRight
@@ -98,7 +98,7 @@ export default function Hero() {
           <a
             href="#spaces"
             data-testid="hero-cta-explore"
-            className="inline-flex items-center gap-3 border border-ivory/35 px-8 py-4 text-sm font-bold uppercase tracking-[0.14em] text-ivory transition-all duration-300 hover:border-gold hover:text-gold-light"
+            className="inline-flex items-center gap-3 rounded-xl border border-ivory/35 px-8 py-4 text-sm font-bold uppercase tracking-[0.14em] text-ivory transition-all duration-300 hover:border-gold hover:text-gold-light"
           >
             Explore Spaces
           </a>
@@ -108,12 +108,12 @@ export default function Hero() {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 1, delay: 1.25 }}
-          className="mt-14 flex flex-wrap items-center gap-x-8 gap-y-3 text-[11px] font-bold uppercase tracking-[0.28em] text-ivory/55"
+          className="mt-16 flex flex-wrap items-center gap-x-8 gap-y-3 text-[11px] font-bold uppercase tracking-[0.28em] text-ivory/55"
         >
           {["Students", "Working Professionals", "Fully Furnished", "Hygienic Food"].map(
-            (t, i) => (
+            (t) => (
               <span key={t} className="flex items-center gap-3">
-                {i > 0 && <span className="hidden h-1 w-1 rounded-full bg-gold md:inline-block" />}
+                <span className="hidden h-1 w-1 rounded-full bg-gold md:inline-block" />
                 {t}
               </span>
             )
@@ -121,19 +121,6 @@ export default function Hero() {
         </motion.div>
       </div>
 
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: 1.6, duration: 1 }}
-        className="absolute bottom-8 left-1/2 z-10 hidden -translate-x-1/2 flex-col items-center gap-3 md:flex"
-      >
-        <span className="text-[10px] font-bold uppercase tracking-[0.4em] text-ivory/50">
-          Scroll
-        </span>
-        <span className="relative h-12 w-px overflow-hidden bg-ivory/15">
-          <span className="absolute inset-x-0 h-8 animate-cue-drop bg-gold" />
-        </span>
-      </motion.div>
     </section>
   );
 }
