@@ -61,6 +61,7 @@ export default function Header() {
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
   const isStandalonePage = window.location.pathname !== "/";
+  const spacesHref = "/#spaces";
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 40);
@@ -97,7 +98,12 @@ export default function Header() {
               ) : l.label === "Book My Stay" ? (
                 <BookingMenu key={l.href} light={light} />
               ) : (
-                <NavLink key={l.href} {...l} light={light} />
+                <NavLink
+                  key={l.href}
+                  href={l.label === "Spaces" ? spacesHref : l.href}
+                  label={l.label}
+                  light={light}
+                />
               )
             ))}
           </nav>
@@ -137,7 +143,7 @@ export default function Header() {
               {HEADER_LINKS.map((l, i) => (
                 <motion.a
                   key={l.href}
-                  href={l.href}
+                  href={l.label === "Spaces" ? spacesHref : l.href}
                   onClick={() => setOpen(false)}
                   data-testid={`mobile-nav-link-${l.href.replace("#", "")}`}
                   initial={{ y: 24, opacity: 0 }}

@@ -2,6 +2,31 @@ import { motion } from "framer-motion";
 
 const EASE = [0.16, 1, 0.3, 1];
 
+export const Caption = ({ children, dark = false, className = "" }) => (
+  <motion.p
+    initial={{ y: 18 }}
+    whileInView={{ y: 0 }}
+    viewport={{ once: true, amount: 0.15 }}
+    transition={{ duration: 0.85, ease: EASE }}
+    className={`relative max-w-sm overflow-hidden rounded-2xl border px-5 py-4 text-sm font-semibold leading-relaxed shadow-sm ${
+      dark
+        ? "border-gold/45 bg-white/[0.06] text-ivory/85 shadow-black/10"
+        : "border-gold-deep/35 bg-white/75 text-navy/75 shadow-navy/5"
+    } ${className}`}
+  >
+    <motion.span
+      initial={{ scaleX: 0 }}
+      whileInView={{ scaleX: 1 }}
+      viewport={{ once: true, amount: 0.15 }}
+      transition={{ duration: 0.7, delay: 0.18, ease: EASE }}
+      className={`absolute inset-y-0 left-0 w-1 origin-left ${
+        dark ? "bg-gold" : "bg-gold-deep"
+      }`}
+    />
+    <span>{children}</span>
+  </motion.p>
+);
+
 const SectionHead = ({ index, eyebrow, title, note, dark = false, meta }) => (
   <div className="mb-12 md:mb-16">
     <motion.div
@@ -32,15 +57,26 @@ const SectionHead = ({ index, eyebrow, title, note, dark = false, meta }) => (
       </motion.h2>
       {note && (
         <motion.p
-          initial={{ opacity: 0, y: 18 }}
-          whileInView={{ opacity: 1, y: 0 }}
+          initial={{ y: 18 }}
+          whileInView={{ y: 0 }}
           viewport={{ once: true, amount: 0.15 }}
-          transition={{ duration: 0.8, delay: 0.16, ease: EASE }}
-          className={`max-w-sm text-sm leading-relaxed ${
-            dark ? "text-ivory/60" : "text-navy/60"
+          transition={{ duration: 0.85, delay: 0.16, ease: EASE }}
+          className={`relative max-w-sm overflow-hidden rounded-2xl border px-5 py-4 text-sm font-semibold leading-relaxed shadow-sm ${
+            dark
+              ? "border-gold/45 bg-white/[0.06] text-ivory/85 shadow-black/10"
+              : "border-gold-deep/35 bg-white/75 text-navy/75 shadow-navy/5"
           }`}
         >
-          {note}
+          <motion.span
+            initial={{ scaleX: 0 }}
+            whileInView={{ scaleX: 1 }}
+            viewport={{ once: true, amount: 0.15 }}
+            transition={{ duration: 0.7, delay: 0.34, ease: EASE }}
+            className={`absolute inset-y-0 left-0 w-1 origin-left ${
+              dark ? "bg-gold" : "bg-gold-deep"
+            }`}
+          />
+          <span>{note}</span>
         </motion.p>
       )}
     </div>

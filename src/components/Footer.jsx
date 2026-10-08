@@ -4,6 +4,10 @@ import { CONTACT_EMAIL, CONTACT_PHONE_DISPLAY, NAV_LINKS } from "@/constants/sit
 
 export default function Footer({ property }) {
   const year = new Date().getFullYear();
+  const isStandalonePage = window.location.pathname !== "/";
+  const resolveNavHref = (href) =>
+    isStandalonePage && href.startsWith("#") ? `/${href}` : href;
+
   return (
     <footer data-testid="site-footer" className="relative overflow-hidden bg-navy-deep text-ivory">
       <div className="grain absolute inset-0 opacity-[0.06] mix-blend-overlay" />
@@ -53,7 +57,7 @@ export default function Footer({ property }) {
                 {[...NAV_LINKS, { label: "Apply Now", href: "#apply" }].map((l) => (
                   <li key={l.href}>
                     <a
-                      href={l.href}
+                      href={resolveNavHref(l.href)}
                       data-testid={`footer-link-${l.href.replace("#", "")}`}
                       className="text-sm font-semibold text-ivory/70 transition-colors hover:text-gold-light"
                     >

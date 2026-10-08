@@ -3,6 +3,7 @@ import { toast } from "sonner";
 import { ArrowLeft, CheckCircle } from "@phosphor-icons/react";
 import { IMAGES } from "@/constants/site";
 import Footer from "@/components/Footer";
+import { Caption } from "@/components/SectionHead";
 
 function BookingProcess() {
   const steps = [
@@ -23,7 +24,7 @@ function BookingProcess() {
 function BookingShell({ title, intro, children }) {
   return <><main className="relative z-[2] min-h-screen bg-paper pb-24 pt-32"><div className="mx-auto max-w-7xl px-4 md:px-8">
     <a href="/" className="mb-10 inline-flex items-center gap-2 text-xs font-bold uppercase tracking-[0.2em] text-navy/60"><ArrowLeft size={16} /> Back to home</a>
-    <div className="mb-12 max-w-2xl"><p className="mb-4 text-xs font-bold uppercase tracking-[0.3em] text-gold-deep">Book Your Stay</p><h1 className="font-display text-5xl font-extrabold tracking-tight text-navy md:text-7xl">{title}</h1><p className="mt-5 text-base leading-relaxed text-navy/65">{intro}</p></div>
+    <div className="mb-12 max-w-2xl"><p className="mb-4 text-xs font-bold uppercase tracking-[0.3em] text-gold-deep">Book Your Stay</p><h1 className="font-display text-5xl font-extrabold tracking-tight text-navy md:text-7xl">{title}</h1><Caption className="mt-5">{intro}</Caption></div>
     {children}
   </div></main><Footer /></>;
 }

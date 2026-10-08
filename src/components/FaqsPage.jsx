@@ -1,5 +1,6 @@
 import { CaretDown } from "@phosphor-icons/react";
 import Footer from "@/components/Footer";
+import { Caption } from "@/components/SectionHead";
 
 const FAQS = [
   ["What documents are needed to book a room?", "We need a valid government ID and a recent photo for verification. The exact requirements are shown before you submit your booking."],
@@ -19,9 +20,9 @@ export default function FaqsPage() {
           <div className="mb-12 max-w-2xl">
             <p className="mb-4 text-xs font-bold uppercase tracking-[0.3em] text-gold-deep">Need to know</p>
             <h1 className="font-display text-5xl font-extrabold tracking-tight text-navy md:text-7xl">Frequently asked questions.</h1>
-            <p className="mt-5 text-base leading-relaxed text-navy/65 md:text-lg">
+            <Caption className="mt-5 max-w-2xl text-base md:text-lg">
               Quick answers about choosing a property, booking your room, and settling into RR Premium Living.
-            </p>
+            </Caption>
           </div>
           <div className="space-y-3">
             {FAQS.map(([question, answer]) => (

@@ -1,5 +1,6 @@
 import { AndroidLogo, AppleLogo, DownloadSimple } from "@phosphor-icons/react";
 import Footer from "@/components/Footer";
+import { Caption } from "@/components/SectionHead";
 
 const PLATFORMS = [
   { id: "ios", title: "iOS App", copy: "Book and manage your stay from your iPhone.", icon: AppleLogo },
@@ -14,9 +15,9 @@ export default function AppDownloadPage() {
           <div className="mb-12 max-w-2xl">
             <p className="mb-4 text-xs font-bold uppercase tracking-[0.3em] text-gold-deep">RR on the go</p>
             <h1 className="font-display text-5xl font-extrabold tracking-tight text-navy md:text-7xl">Download the app.</h1>
-            <p className="mt-5 text-base leading-relaxed text-navy/65 md:text-lg">
+            <Caption className="mt-5 max-w-2xl text-base md:text-lg">
               Choose your platform to stay close to your property, booking, and resident updates.
-            </p>
+            </Caption>
           </div>
           <div className="grid gap-6 sm:grid-cols-2">
             {PLATFORMS.map(({ id, title, copy, icon: Icon }) => (

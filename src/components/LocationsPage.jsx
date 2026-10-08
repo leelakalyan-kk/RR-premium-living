@@ -10,6 +10,7 @@ import {
 import { useMemo, useState } from "react";
 import { LOCATION_PROPERTIES } from "@/constants/site";
 import Footer from "@/components/Footer";
+import { Caption } from "@/components/SectionHead";
 
 const AUDIENCE_ICONS = { male: GenderMale, female: GenderFemale, "co-living": UsersThree };
 
@@ -56,14 +57,16 @@ export default function LocationsPage() {
         <a href="/" className="mb-10 inline-flex items-center gap-2 text-xs font-bold uppercase tracking-[0.2em] text-navy/60 transition-colors hover:text-gold-deep">
           <ArrowLeft size={16} weight="bold" /> Back to home
         </a>
-        <div className="mb-12 max-w-2xl">
-          <p className="mb-4 text-xs font-bold uppercase tracking-[0.3em] text-gold-deep">Our properties</p>
-          <h1 className="font-display text-5xl font-extrabold tracking-tight text-navy md:text-7xl">
-            Find your next place to live.
-          </h1>
-          <p className="mt-5 text-base leading-relaxed text-navy/65 md:text-lg">
+        <div className="mb-12 flex flex-col gap-6 lg:flex-row lg:items-end lg:justify-between">
+          <div className="max-w-2xl">
+            <p className="mb-4 text-xs font-bold uppercase tracking-[0.3em] text-gold-deep">Our properties</p>
+            <h1 className="font-display text-5xl font-extrabold tracking-tight text-navy md:text-7xl">
+              Find your next place to live.
+            </h1>
+          </div>
+          <Caption className="mt-0 max-w-sm text-base md:text-lg">
             Explore RR Premium Living PGs by city, room sharing, air-conditioning, and the community they are designed for.
-          </p>
+          </Caption>
         </div>
         <div className="mb-10 flex flex-wrap items-center gap-3" aria-label="Filter properties by space">
           <span className="mr-2 text-xs font-bold uppercase tracking-[0.18em] text-navy/45">Filter by space</span>

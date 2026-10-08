@@ -1,6 +1,7 @@
 import { EnvelopeSimple, MapPin, Phone } from "@phosphor-icons/react";
 import { LOCATION_PROPERTIES } from "@/constants/site";
 import Footer from "@/components/Footer";
+import { Caption } from "@/components/SectionHead";
 
 export default function ContactPage() {
   return (
@@ -12,9 +13,9 @@ export default function ContactPage() {
             <h1 className="font-display text-5xl font-extrabold tracking-tight text-navy md:text-7xl">
               Contact your preferred PG.
             </h1>
-            <p className="mt-5 text-base leading-relaxed text-navy/65 md:text-lg">
+            <Caption className="mt-5 max-w-2xl text-base md:text-lg">
               Choose a property below to connect directly with its admissions team. These contacts are managed with each PG listing.
-            </p>
+            </Caption>
           </div>
           <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
             {LOCATION_PROPERTIES.map((property) => (

@@ -7,9 +7,6 @@ const LOCATIONS = [
     id: "hyderabad",
     city: "Hyderabad",
     image: IMAGES.hyderabad,
-    span: "lg:col-span-7",
-    height: "h-[280px] md:h-[360px]",
-    index: "01",
     blurb:
       "Well-connected neighbourhoods close to campuses and tech corridors — a calm, premium base in the City of Pearls.",
   },
@@ -17,9 +14,6 @@ const LOCATIONS = [
     id: "bangalore",
     city: "Bangalore",
     image: IMAGES.bangalore,
-    span: "lg:col-span-5",
-    height: "h-[280px] md:h-[360px]",
-    index: "02",
     blurb:
       "Premium co-living in India's garden city — built for students and professionals who want comfort without compromise.",
   },
@@ -35,35 +29,32 @@ export default function Locations() {
           title="Two cities. One standard of living."
           note="RR Premium Living operates in Hyderabad and Bangalore — premium PG & co-living spaces in both cities."
         />
-        <div className="grid grid-cols-1 gap-6 lg:grid-cols-12">
+        <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
           {LOCATIONS.map((loc, i) => (
-            <FadeIn key={loc.id} delay={i * 0.12} className={loc.span}>
+            <FadeIn key={loc.id} delay={i * 0.12} className="h-full">
               <a
                 href="/locations"
                 data-testid={`location-card-${loc.id}`}
-                className={`loc-card group relative block overflow-hidden rounded-2xl ${loc.height}`}
+                className="loc-card group flex h-full flex-col overflow-hidden rounded-2xl border border-navy/10 bg-white shadow-sm transition-all duration-500 hover:-translate-y-2 hover:border-gold/60 hover:shadow-[0_24px_60px_rgba(11,19,43,0.12)]"
               >
-                <img
-                  src={loc.image}
-                  alt={`${loc.city} cityscape`}
-                  className="absolute inset-0 h-full w-full object-cover transition-transform duration-[1.2s] ease-out group-hover:scale-[1.06]"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-navy/95 via-navy/35 to-navy/10 transition-opacity duration-700 group-hover:opacity-95" />
-                <span className="pointer-events-none absolute inset-3 z-10 rounded-xl border border-gold/75" />
-                <span className="absolute right-6 top-6 font-display text-sm font-bold tracking-[0.3em] text-ivory/60">
-                  {loc.index}
-                </span>
-                <div className="absolute inset-x-0 bottom-0 p-7 md:p-9">
-                  <p className="mb-3 flex items-center gap-2 text-[11px] font-bold uppercase tracking-[0.3em] text-gold">
+                <div className="relative h-60 overflow-hidden">
+                  <img
+                    src={loc.image}
+                    alt={`${loc.city} cityscape`}
+                    className="h-full w-full object-cover transition-transform duration-[1.2s] ease-out group-hover:scale-[1.06]"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-navy/55 via-transparent to-transparent" />
+                  <span className="pointer-events-none absolute inset-3 rounded-xl border border-gold/75" />
+                </div>
+                <div className="flex flex-1 flex-col p-7">
+                  <p className="flex items-center gap-2 text-[11px] font-bold uppercase tracking-[0.3em] text-gold-deep">
                     <MapPin size={14} weight="fill" /> Location
                   </p>
-                  <h3 className="font-display text-4xl font-extrabold tracking-tight text-ivory md:text-5xl">
+                  <h3 className="mt-3 font-display text-3xl font-extrabold tracking-tight text-navy md:text-4xl">
                     {loc.city}
                   </h3>
-                  <p className="mt-3 max-w-md text-sm leading-relaxed text-ivory/75 opacity-0 transition-all duration-700 md:translate-y-2 md:group-hover:opacity-100 md:group-hover:translate-y-0">
-                    {loc.blurb}
-                  </p>
-                  <p className="mt-4 text-[11px] font-bold uppercase tracking-[0.28em] text-ivory/55">
+                  <p className="mt-3 text-sm leading-relaxed text-navy/65">{loc.blurb}</p>
+                  <p className="mt-auto pt-6 text-[11px] font-bold uppercase tracking-[0.28em] text-gold-deep">
                     View PG properties
                   </p>
                 </div>

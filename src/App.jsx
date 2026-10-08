@@ -70,6 +70,14 @@ function App() {
     };
     document.addEventListener("click", onClick);
 
+    const hash = window.location.hash;
+    const hashTarget = hash ? document.querySelector(hash) : null;
+    if (hashTarget) {
+      requestAnimationFrame(() => {
+        lenis.scrollTo(hashTarget, { offset: -76, immediate: true });
+      });
+    }
+
     return () => {
       document.removeEventListener("click", onClick);
       cancelAnimationFrame(rafId);

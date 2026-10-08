@@ -15,7 +15,7 @@ export default function Food() {
         />
 
         <div className="grid grid-cols-1 items-start gap-10 lg:items-stretch lg:grid-cols-12">
-          <FadeIn className="lg:col-span-5">
+          <FadeIn className="lg:col-span-5 lg:flex lg:flex-col lg:justify-center">
             <figure className="clip-frame relative overflow-hidden rounded-2xl">
               <img
                 src={IMAGES.food}
