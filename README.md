@@ -1,76 +1,164 @@
 # RR Premium Living
 
-Marketing website for RR Premium Living, a premium PG and co-living brand for
-students and working professionals in Hyderabad and Bangalore.
+Responsive marketing and information website for RR Premium Living, a PG and
+co-living brand serving students and working professionals in Hyderabad and
+Bangalore.
+
+## Website features
+
+- Home page with property highlights, accommodation options, amenities, food,
+  house rules, and an application form.
+- Locations directory with filters for men's spaces, women's spaces, and
+  co-living properties.
+- Individual property pages with photos, amenities, nearby places, resident
+  testimonials, and food information.
+- Online booking preference form with a review step.
+- Booking-process guide and static booking policies.
+- Property-specific contact information, FAQs, and app-download information.
+- Responsive navigation, animated page sections, smooth scrolling, and toast
+  notifications.
+
+## Routes
+
+| URL | Page |
+| --- | --- |
+| `/` | Home page |
+| `/locations` | Property directory and space filters |
+| `/locations/rr-gachibowli` | RR Gachibowli Heights property details |
+| `/locations/rr-madhapur` | RR Madhapur Living property details |
+| `/locations/rr-whitefield` | RR Whitefield House property details |
+| `/booking/online` | Online booking preferences and review |
+| `/booking/process` | Booking steps |
+| `/booking/policies` | Booking guidelines and policies |
+| `/contact` | Property admissions contacts and resident grievance form |
+| `/faqs` | Frequently asked questions |
+| `/app-download` | iOS and Android app information |
+
+The home page uses hash links for its sections, including `/#spaces`,
+`/#amenities`, `/#food`, `/#rules`, and `/#apply`.
+
+## Forms and integrations
+
+- **Home page application form:** validates the mobile number and opens WhatsApp
+  with the application details pre-filled. The visitor must send the message in
+  WhatsApp to deliver it to the admissions team.
+- **Online booking:** collects preferences and displays a review/confirmation
+  screen in the browser. It currently does not send or persist booking data.
+- **Resident grievance form:** currently displays an in-page confirmation only;
+  it is not connected to an email service or backend.
+- **App downloads:** store links are not configured yet; the page is marked
+  “Coming soon.”
+
+There is no application server or database configured in this project.
 
 ## Tech stack
 
-- React
-- Vite
+- React 19
+- Vite 8
+- Tailwind CSS 3
 - Framer Motion
-- Lenis
+- React Fast Marquee
+- Lenis smooth scrolling
 - Phosphor Icons
-- Sonner
-- Tailwind CSS
+- Sonner notifications
+
+## Requirements
+
+- Node.js 20.19+ or 22.12+
+- npm (included with Node.js), or Corepack/Yarn
 
 ## Getting started
 
-### Prerequisites
-
-- Node.js 18 or newer (Node.js 20+ recommended)
-- Yarn, or Corepack included with Node.js
-
-### 1. Clone the repository
+Clone the repository:
 
 ```bash
 git clone https://github.com/leelakalyan-kk/RR-premium-living.git
 cd RR-premium-living
 ```
 
-### 2. Install packages
+Install dependencies with npm:
 
-Using Yarn with Corepack:
+```bash
+npm install
+```
+
+Or use the committed Yarn lockfile:
 
 ```bash
 corepack enable
 yarn install
 ```
 
-If Yarn is already installed, run:
+Start the local development server:
 
 ```bash
-yarn install
+npm run dev
 ```
 
-Packages are declared in `package.json`, and `yarn.lock` keeps their versions
-consistent. Do not commit `node_modules/`; it is intentionally excluded by
-`.gitignore`.
+Open [http://localhost:5173/](http://localhost:5173/) in a browser. Vite
+refreshes the page when source files change.
 
-### 3. Run the development server
+## Available scripts
 
-```bash
-yarn dev
+| Command | Purpose |
+| --- | --- |
+| `npm run dev` | Start the Vite development server |
+| `npm run build` | Create the production site in `dist/` |
+| `npm run preview` | Preview the production build locally |
+
+The project does not currently define a test or lint script.
+
+## Project structure
+
+```text
+public/                       Static images and other public assets
+src/
+  components/
+    Amenitied.jsx              Home page amenities section
+    AppDownloadPage.jsx        App download information
+    ApplyForm.jsx              Home page application form
+    BookingPage.jsx            Booking, process, and policies pages
+    ContactPage.jsx            Admissions contacts and grievance form
+    FaqsPage.jsx               FAQ page
+    Food.jsx                   Home page food section
+    Footer.jsx                 Site footer
+    Header.jsx                 Main navigation
+    Hero.jsx                   Home page hero
+    LocationDetailPage.jsx     Individual property details
+    Locations.jsx              Home page location highlights
+    LocationsPage.jsx          Property directory and filters
+    Marquee.jsx                Home page editorial marquee
+    Rules.jsx                  Home page house rules
+    SectionHead.jsx            Shared section headings and captions
+    Spaces.jsx                 Home page accommodation cards
+  constants/
+    site.js                    Navigation, images, property and menu content
+  App.css                      Application-specific styles
+  App.jsx                      Page selection and shared app behavior
+  index.css                    Global styles and Tailwind directives
+  main.jsx                     React entry point
+index.html                     Vite HTML entry point
+vite.config.js                 Vite configuration and `@` source alias
+tailwind.config.js             Tailwind CSS configuration
+postcss.config.js              PostCSS configuration
+vercel.json                    Vercel build and output settings
 ```
 
-Open [http://localhost:5173/](http://localhost:5173/) in your browser. The
-server reloads automatically when source files change.
+Most site text, property details, navigation links, and remote image URLs are
+configured in `src/constants/site.js`. Locally supplied static images are kept
+in `public/` and referenced from the relevant component or content entry.
 
-### 4. Create a production build
+## Deployment
 
-```bash
-yarn build
-```
+The repository includes a Vercel configuration. Vercel installs dependencies
+with `npm install`, runs `npm run build`, and serves the generated `dist/`
+directory.
 
-To preview the production build locally:
+## VS Code Bedrock task
 
-```bash
-yarn preview
-```
-
-## Using Claude Opus 5.5 from VS Code
-
-The project includes a VS Code task for calling the configured Amazon Bedrock
-inference profile without storing AWS credentials in the repository.
+The repository also includes a VS Code task for calling the configured Amazon
+Bedrock inference profile. AWS credentials are not stored in the repository.
+To use it:
 
 1. Install and authenticate the AWS CLI:
 
@@ -79,58 +167,22 @@ inference profile without storing AWS credentials in the repository.
    aws sts get-caller-identity
    ```
 
-2. Ensure the authenticated AWS identity has `bedrock:Converse` permission and
-   access to the `ap-south-1` region.
-3. In VS Code, open **Terminal > Run Task**, choose **Bedrock: Converse with
-   Claude Opus 5.5**, and enter your prompt.
+2. Ensure the authenticated AWS identity can call `bedrock:Converse` in
+   `ap-south-1`.
+3. In VS Code, select **Terminal > Run Task > Bedrock: Converse with Claude
+   Opus 5.5** and enter a prompt.
 
-The response is printed in the task terminal. This task uses the model
-inference profile configured in `.vscode/tasks.json`; it does not change the
-model used by GitHub Copilot Chat.
+The response appears in the task terminal. This task does not change the model
+used by GitHub Copilot Chat.
 
-### Available scripts
+## Contributing
 
-| Command | Purpose |
-| --- | --- |
-| `yarn dev` | Start the Vite development server |
-| `yarn build` | Build the optimized production bundle |
-| `yarn preview` | Serve the production bundle locally |
-
-## Project structure
-
-```text
-public/              Static assets and favicon
-src/App.jsx          Main application component
-src/main.jsx         React application entry point
-src/components/      Page sections and reusable UI components
-src/constants/       Site content and configuration
-src/App.css          Application styles
-src/index.css        Global styles
-index.html           Vite HTML entry point
-vite.config.js       Vite configuration and import aliases
-tailwind.config.js   Tailwind CSS configuration
-```
-
-## Adding dependencies
-
-Use Yarn to add packages:
-
-```bash
-yarn add <package-name>
-```
-
-Keep `yarn.lock` committed so other contributors install the same dependency
-versions.
-
-## Contributing guidelines
-
-1. Fork the repository.
-2. Create a feature branch: `git checkout -b feature/your-change`.
-3. Install dependencies with `yarn install`.
-4. Make your changes and run `yarn build`.
-5. Check the result in the browser with `yarn dev`.
-6. Do not commit `node_modules/` or environment secrets.
-7. Push your branch and open a pull request with a clear description.
+1. Create a feature branch.
+2. Install dependencies.
+3. Make the change and run `npm run build`.
+4. Check the result with `npm run dev`.
+5. Do not commit `node_modules/`, credentials, or other secrets.
+6. Open a pull request with a clear description.
 
 ## License
 
