@@ -42,11 +42,6 @@ export default function ApplyForm() {
     };
   };
 
-  const mailtoHref = (d) =>
-    `mailto:${CONTACT_EMAIL}?subject=${encodeURIComponent(
-      "New Application — RR Premium Living"
-    )}&body=${encodeURIComponent(buildMessage(d))}`;
-
   const openWhatsApp = (d) => window.open(
     `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(buildMessage(d))}`,
     "_blank"
@@ -63,21 +58,8 @@ export default function ApplyForm() {
     if (win) {
       toast.success("Opening WhatsApp with your application details.");
     } else {
-      toast.info("WhatsApp did not open — falling back to Email.");
-      window.location.href = mailtoHref(d);
+      toast.error("WhatsApp could not be opened. Please allow pop-ups and try again.");
     }
-  };
-
-  const handleEmailFallback = (e) => {
-    e.preventDefault();
-    const form = document.getElementById("apply-form");
-    const d = readForm(form);
-    if (!/^\d{10}$/.test(d.mobile)) {
-      toast.error("Please fill the form with a valid 10-digit mobile number first.");
-      return;
-    }
-    window.location.href = mailtoHref(d);
-    toast.success("Opening your email app with the application details.");
   };
 
   return (
@@ -266,19 +248,9 @@ export default function ApplyForm() {
                     className="transition-transform duration-300 group-hover:translate-x-1.5"
                   />
                 </button>
-                <button
-                  type="button"
-                  onClick={handleEmailFallback}
-                  data-testid="apply-fallback-email"
-                  className="text-center text-sm font-bold text-navy/60 underline decoration-gold/60 underline-offset-4 transition-colors hover:text-navy"
-                >
-                  or send via Email instead
-                </button>
               </div>
               <p className="mt-4 text-xs leading-relaxed text-navy/50">
-                Submitting opens WhatsApp with your application pre-filled for our team. If
-                WhatsApp does not open, we fall back to email automatically — or use the email
-                link above.
+                Submitting opens WhatsApp with your application pre-filled for our team.
               </p>
             </form>
           </FadeIn>

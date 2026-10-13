@@ -65,9 +65,16 @@ export default function LocationDetailPage({ property }) {
             })}
           </section>
 
-          <section className="mt-20 grid gap-10 lg:grid-cols-2">
-            <div><p className="text-xs font-bold uppercase tracking-[0.25em] text-gold-deep">Exclusive at this PG</p><h2 className="mt-3 font-display text-4xl font-extrabold text-navy">Designed around your day.</h2><ul className="mt-7 space-y-4">{property.exclusive.map((item) => <li key={item} className="flex gap-3 text-sm font-semibold text-navy/75"><CheckCircle size={20} weight="fill" className="shrink-0 text-gold-deep" />{item}</li>)}</ul></div>
-            <div><p className="text-xs font-bold uppercase tracking-[0.25em] text-gold-deep">Nearby locations</p><div className="mt-5 grid gap-3">{property.nearby.map((item) => <p key={item} className="rounded-md bg-white p-4 text-sm font-semibold text-navy/70"><MapPin size={17} className="mr-2 inline text-gold-deep" />{item}</p>)}</div></div>
+          <section className="mt-20 grid gap-10 lg:grid-cols-2 lg:items-center">
+            <div className="max-w-3xl"><p className="text-xs font-bold uppercase tracking-[0.25em] text-gold-deep">Exclusive at this PG</p><h2 className="mt-3 font-display text-4xl font-extrabold text-navy">Designed around your day.</h2><ul className="mt-7 space-y-4">{property.exclusive.map((item) => <li key={item} className="flex gap-3 text-sm font-semibold text-navy/75"><CheckCircle size={20} weight="fill" className="shrink-0 text-gold-deep" />{item}</li>)}</ul></div>
+            <div className="rounded-2xl bg-navy p-8 text-ivory md:p-10">
+              <p className="text-xs font-bold uppercase tracking-[0.25em] text-gold">Everyday comfort</p>
+              <h2 className="mt-3 font-display text-3xl font-extrabold">A place to feel at home.</h2>
+              <p className="mt-4 max-w-xl text-sm leading-relaxed text-ivory/70">
+                Whether you are studying, working, or relaxing, enjoy a thoughtfully managed space
+                that supports your daily routine and makes settling in feel easy.
+              </p>
+            </div>
           </section>
 
           <section className="mt-20">
@@ -87,8 +94,8 @@ export default function LocationDetailPage({ property }) {
               </div>
               <figure className="relative h-80 overflow-hidden rounded-2xl border border-gold/30 bg-navy/5 shadow-sm lg:h-[20rem]">
                 <img
-                  src={property.gallery[0] || property.image}
-                  alt={`${property.name} shared living space`}
+                  src="/why-choose-rr.png"
+                  alt="Shared living space at RR Premium Living"
                   className="h-full w-full object-cover"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-navy/45 via-transparent to-transparent" />
