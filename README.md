@@ -66,7 +66,7 @@ There is no application server or database configured in this project.
 ## Requirements
 
 - Node.js 20.19+ or 22.12+
-- npm (included with Node.js), or Corepack/Yarn
+- npm (included with Node.js)
 
 ## Getting started
 
@@ -81,13 +81,6 @@ Install dependencies with npm:
 
 ```bash
 npm install
-```
-
-Or use the committed Yarn lockfile:
-
-```bash
-corepack enable
-yarn install
 ```
 
 Start the local development server:
