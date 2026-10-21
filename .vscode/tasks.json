@@ -1,44 +1,33 @@
 {
-	"version": "2.0.0",
-	"inputs": [
-		{
-			"id": "bedrockPrompt",
-			"type": "promptString",
-			"description": "Prompt for Claude Opus 5.5",
-			"default": "Explain the current project structure."
-		}
-	],
-	"tasks": [
-		{
-			"label": "Bedrock: Converse with Claude Opus 5.5",
-			"type": "process",
-			"command": "aws",
-			"args": [
-				"bedrock-runtime",
-				"converse",
-				"--model-id",
-				"arn:aws:bedrock:ap-south-1:344074613469:inference-profile/global.anthropic.claude-opus-5-5",
-				"--messages",
-				"[{\"role\":\"user\",\"content\":[{\"text\":\"${input:bedrockPrompt}\"}]}]",
-				"--inference-config",
-				"{\"maxTokens\":32000,\"stopSequences\":[]}",
-				"--additional-model-request-fields",
-				"{}",
-				"--region",
-				"ap-south-1"
-			],
-			"problemMatcher": []
-		},
-		{
-			"label": "Run RR Premium Living",
-			"type": "shell",
-			"command": "npm",
-			"args": [
-				"run",
-				"dev"
-			],
-			"isBackground": true,
-			"problemMatcher": []
-		}
-	]
+  "version": "2.0.0",
+  "inputs": [
+    {
+      "id": "bedrockPrompt",
+      "type": "promptString",
+      "description": "Prompt for Claude Opus 5.5",
+      "default": "Explain the current project structure."
+    }
+  ],
+  "tasks": [
+    {
+      "label": "Bedrock: Converse with Claude Opus 5.5",
+      "type": "process",
+      "command": "aws",
+      "args": [
+        "bedrock-runtime",
+        "converse",
+        "--model-id",
+        "arn:aws:bedrock:ap-south-1:344074613469:inference-profile/global.anthropic.claude-opus-5-5",
+        "--messages",
+        "[{\"role\":\"user\",\"content\":[{\"text\":\"${input:bedrockPrompt}\"}]}]",
+        "--inference-config",
+        "{\"maxTokens\":32000,\"stopSequences\":[]}",
+        "--additional-model-request-fields",
+        "{}",
+        "--region",
+        "ap-south-1"
+      ],
+      "problemMatcher": []
+    }
+  ]
 }
