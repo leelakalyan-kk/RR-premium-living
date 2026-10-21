@@ -26,7 +26,7 @@ export default function Food() {
             </figure>
             <div
               data-testid="menu-note-nonveg"
-              className="mt-6 inline-flex items-center gap-3 rounded-xl bg-gold px-5 py-3.5 text-sm font-bold text-navy"
+              className="mt-6 inline-flex w-fit max-w-full items-center gap-3 rounded-xl bg-gold px-5 py-3.5 text-sm font-bold text-navy"
             >
               <span className="relative flex h-2.5 w-2.5">
                 <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-navy/40" />

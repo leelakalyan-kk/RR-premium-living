@@ -36,11 +36,7 @@ const AmenityCard = ({ amenity, delay }) => (
         <img
           src={amenity.image}
           alt={amenity.label}
-          className={`h-full w-full object-cover transition-transform duration-700 ${
-            amenity.id === "geysers"
-              ? "origin-[38%_center] scale-[1.45] object-[38%_center] group-hover:scale-[1.55]"
-              : "object-center group-hover:scale-105"
-          }`}
+          className="h-full w-full object-cover object-center transition-transform duration-700 group-hover:scale-105"
         />
         <div className="absolute inset-0 bg-navy/25 transition-colors duration-700 group-hover:bg-navy/10" />
       </figure>

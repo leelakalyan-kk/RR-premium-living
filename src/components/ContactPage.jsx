@@ -1,16 +1,34 @@
-import { MapPin, Phone } from "@phosphor-icons/react";
-import { useState } from "react";
+import { EnvelopeSimple, Phone } from "@phosphor-icons/react";
 import { toast } from "sonner";
-import { LOCATION_PROPERTIES } from "@/constants/site";
+import {
+  CONTACT_EMAIL,
+  CONTACT_PHONE_DISPLAY,
+  WHATSAPP_NUMBER,
+} from "@/constants/site";
 import Footer from "@/components/Footer";
 import { Caption } from "@/components/SectionHead";
 
 export default function ContactPage() {
-  const [submitted, setSubmitted] = useState(false);
   const submitComplaint = (event) => {
     event.preventDefault();
-    setSubmitted(true);
-    toast.success("Your complaint has been recorded. Our team will respond shortly.");
+    const formData = new FormData(event.currentTarget);
+    const message = [
+      "New Complaint / Grievance — RR Premium Living",
+      "---------------------------------------------",
+      `Name: ${formData.get("name")}`,
+      `Mobile: ${formData.get("mobile")}`,
+      `Complaint: ${formData.get("complaint")}`,
+      "---------------------------------------------",
+    ].join("\n");
+    const whatsappWindow = window.open(
+      `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`,
+      "_blank"
+    );
+    if (!whatsappWindow) {
+      toast.error("WhatsApp could not be opened. Please allow pop-ups and try again.");
+      return;
+    }
+    toast.success("WhatsApp opened. Send your grievance there to submit it.");
   };
 
   return (
@@ -20,52 +38,43 @@ export default function ContactPage() {
           <div className="mb-12 flex flex-col gap-6 lg:flex-row lg:items-end lg:justify-between">
             <div>
               <p className="mb-4 text-xs font-bold uppercase tracking-[0.3em] text-gold-deep">Talk to our team</p>
-              <h1 className="font-display text-5xl font-extrabold tracking-tight text-navy md:text-7xl">Contact your preferred PG.</h1>
+              <h1 className="font-display text-5xl font-extrabold tracking-tight text-navy md:text-7xl">Contact our PG team.</h1>
             </div>
             <Caption className="mt-0 max-w-sm text-base md:text-lg">
-              Choose a property and connect directly with its admissions team. Our support is available for visits, availability, and move-in questions.
+              Contact our admissions team about men's living, women's living, co-living, visits, or move-in questions.
             </Caption>
           </div>
-          <section className="rounded-2xl border border-navy/10 bg-white p-6 shadow-sm md:p-8">
-            <div className="mb-6 flex items-center justify-between border-b border-navy/10 pb-5">
-              <div>
+          <div className="grid items-stretch gap-6 lg:grid-cols-[0.85fr_1.15fr]">
+            <section className="h-full rounded-2xl border border-navy/10 bg-white p-6 shadow-sm md:p-8">
+              <div className="mb-6 border-b border-navy/10 pb-5">
                 <p className="text-xs font-bold uppercase tracking-[0.2em] text-gold-deep">Admissions contacts</p>
-                <h2 className="mt-2 font-display text-3xl font-extrabold text-navy">One team, every property.</h2>
+                <h2 className="mt-2 font-display text-3xl font-extrabold text-navy">One team, every living option.</h2>
               </div>
-              <MapPin size={28} weight="fill" className="text-gold-deep" />
-            </div>
-            <div className="grid gap-3 md:grid-cols-3">
-              {LOCATION_PROPERTIES.map((property) => (
-                <div key={property.id} className="rounded-xl bg-paper p-5">
-                  <p className="text-xs font-bold uppercase tracking-[0.18em] text-gold-deep">{property.location}</p>
-                  <h3 className="mt-2 font-display text-xl font-extrabold text-navy">{property.name}</h3>
-                  <p className="mt-4 text-sm font-bold text-navy">{property.contact.name}</p>
-                  <a href={`tel:${property.contact.phone.replace(/\D/g, "")}`} className="mt-2 flex items-center gap-2 text-sm font-semibold text-navy/70 hover:text-gold-deep">
-                    <Phone size={16} className="text-gold-deep" /> {property.contact.phone}
-                  </a>
-                </div>
-              ))}
-            </div>
-          </section>
-          <section className="mt-8 rounded-2xl border border-gold/30 bg-white p-6 shadow-sm md:p-8">
-            <div className="mb-6 flex flex-col gap-3 md:flex-row md:items-end md:justify-between">
-              <div>
+              <div className="rounded-xl bg-paper p-5">
+                <h3 className="font-display text-xl font-extrabold text-navy">Admissions Team</h3>
+                <a href={`tel:${CONTACT_PHONE_DISPLAY.replace(/\D/g, "")}`} className="mt-4 flex items-center gap-2 text-sm font-semibold text-navy/70 hover:text-gold-deep">
+                  <Phone size={16} className="text-gold-deep" /> {CONTACT_PHONE_DISPLAY}
+                </a>
+                <a href={`mailto:${CONTACT_EMAIL}`} className="mt-2 flex items-center gap-2 text-sm font-semibold text-navy/70 hover:text-gold-deep">
+                  <EnvelopeSimple size={16} className="text-gold-deep" />
+                  {CONTACT_EMAIL}
+                </a>
+              </div>
+            </section>
+            <section className="h-full rounded-2xl border border-gold/30 bg-white p-6 shadow-sm md:p-8">
+              <div className="mb-6">
                 <p className="text-xs font-bold uppercase tracking-[0.2em] text-gold-deep">Resident support</p>
                 <h2 className="mt-2 font-display text-3xl font-extrabold text-navy">Complaint &amp; Grievance</h2>
+                <p className="mt-2 text-sm leading-relaxed text-navy/60">Share the issue and our team will review it with care.</p>
               </div>
-              <p className="max-w-sm text-right text-sm leading-relaxed text-navy/60">Share the issue and our team will review it with care.</p>
-            </div>
-            {submitted ? (
-              <p className="rounded-xl bg-navy p-5 font-semibold text-ivory">Thank you. Your grievance has been submitted to the support team.</p>
-            ) : (
               <form onSubmit={submitComplaint} className="grid gap-4 md:grid-cols-2">
                 <input className="field-input" name="name" placeholder="Your name" required />
                 <input className="field-input" name="mobile" placeholder="Mobile number" type="tel" pattern="[0-9]{10}" required />
-                <textarea className="field-input resize-none md:col-span-2" name="complaint" rows={4} placeholder="Describe your complaint or grievance" required />
-                <button type="submit" className="rounded-xl bg-gold px-6 py-3 text-xs font-bold uppercase tracking-[0.16em] text-navy hover:bg-gold-light md:col-span-2 md:justify-self-end">Submit grievance</button>
+                <textarea className="field-input resize-none py-2 md:col-span-2" name="complaint" rows={2} placeholder="Describe your complaint or grievance" required />
+                <button type="submit" className="w-full rounded-xl bg-gold px-6 py-3 text-xs font-bold uppercase tracking-[0.16em] text-navy hover:bg-gold-light md:col-span-2">Submit via WhatsApp</button>
               </form>
-            )}
-          </section>
+            </section>
+          </div>
         </div>
       </main>
       <Footer />

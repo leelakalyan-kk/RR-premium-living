@@ -2,9 +2,9 @@ import { useState } from "react";
 import {
   ArrowLeft,
   BuildingOffice,
+  Bed,
   CheckCircle,
   EnvelopeSimple,
-  MapPin,
   Phone,
   ShieldCheck,
   Sparkle,
@@ -12,14 +12,15 @@ import {
 } from "@phosphor-icons/react";
 import Footer from "@/components/Footer";
 import { Caption } from "@/components/SectionHead";
+import { PROPERTY_STATS } from "@/constants/site";
 
 export default function LocationDetailPage({ property }) {
   const [day, setDay] = useState("Monday");
   const countIcons = {
-    joined: Users,
-    floors: BuildingOffice,
+    "living-options": BuildingOffice,
     amenities: Sparkle,
-    security: ShieldCheck,
+    residents: Users,
+    "beds-in-progress": Bed,
   };
   const menu = {
     Monday: property.food,
@@ -34,20 +35,19 @@ export default function LocationDetailPage({ property }) {
     <>
       <main className="relative z-[2] bg-paper pb-24 pt-32">
         <div className="mx-auto max-w-7xl px-4 md:px-8">
-          <a href="/locations" className="mb-10 inline-flex items-center gap-2 text-xs font-bold uppercase tracking-[0.2em] text-navy/60 hover:text-gold-deep"><ArrowLeft size={16} weight="bold" /> All properties</a>
+          <a href="/locations" className="mb-10 inline-flex items-center gap-2 text-xs font-bold uppercase tracking-[0.2em] text-navy/60 hover:text-gold-deep"><ArrowLeft size={16} weight="bold" /> All living options</a>
           <div className="grid gap-10 lg:grid-cols-[1.1fr_0.9fr] lg:items-end">
             <div>
               <p className="mb-4 text-xs font-bold uppercase tracking-[0.3em] text-gold-deep">{property.audienceLabel}</p>
               <h1 className="font-display text-5xl font-extrabold tracking-tight text-navy md:text-7xl">{property.name}</h1>
-              <p className="mt-4 flex items-center gap-2 text-sm font-semibold text-navy/60"><MapPin size={17} className="text-gold-deep" /> {property.location}</p>
               <Caption className="mt-6 max-w-2xl text-base md:text-lg">{property.intro || property.details}</Caption>
             </div>
             <img src={property.image} alt={property.name} className="h-72 w-full rounded-md object-cover shadow-lg md:h-96" />
           </div>
 
           <section className="mt-16 grid grid-cols-2 gap-3 md:grid-cols-4 md:gap-4">
-            {Object.entries(property.counts).map(([label, value]) => {
-              const Icon = countIcons[label] || Sparkle;
+            {PROPERTY_STATS.map(({ id, label, value }) => {
+              const Icon = countIcons[id] || Sparkle;
               return (
                 <div
                   key={label}
@@ -84,10 +84,10 @@ export default function LocationDetailPage({ property }) {
                 <h2 className="mt-2 font-display text-3xl font-extrabold text-navy">Premium living, properly managed.</h2>
                 <div className="mt-5 max-w-3xl space-y-4 leading-relaxed text-navy/65">
                   <p>
-                    RR Premium Living brings together thoughtfully selected locations, fully furnished rooms, hygienic food, daily housekeeping, and dependable utilities. Every property is planned to give students and working professionals a comfortable routine, whether they need a quiet place to study, a convenient base near work, or a community that feels easy to settle into.
+                    RR Premium Living brings together comfortable rooms, hygienic food, daily housekeeping, and dependable utilities under one roof. Each living option is planned to give students and working professionals a comfortable routine, whether they need a quiet place to study, a relaxing place to unwind, or a friendly community.
                   </p>
                   <p>
-                    Our on-site teams keep the everyday details running smoothly, from clean shared spaces and regular maintenance to 24/7 security support and responsive admissions assistance. With clear room options, transparent policies, and property-specific support, residents can move in with confidence and focus on living well.
+                    Our on-site team keeps the everyday details running smoothly, from clean shared spaces and regular maintenance to 24/7 security support and responsive admissions assistance. With clear room options and transparent policies, residents can move in with confidence and focus on living well.
                   </p>
                 </div>
                 <div className="mt-6 flex items-center gap-3 text-sm font-bold text-navy"><ShieldCheck size={22} className="text-gold-deep" /> Verified community living</div>

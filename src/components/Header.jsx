@@ -17,25 +17,6 @@ const NavLink = ({ href, label, light, onClick }) => (
   </a>
 );
 
-const AppDownloadMenu = ({ light }) => (
-  <div className="group relative">
-    <a
-      href="/app-download"
-      className={`nav-link inline-flex items-center text-sm font-semibold tracking-wide transition-colors duration-300 ${
-        light ? "text-ivory/85 hover:text-gold-light" : "text-navy/80 hover:text-navy"
-      }`}
-    >
-      App Download+
-    </a>
-    <div className="pointer-events-none invisible absolute left-1/2 top-full z-50 w-44 -translate-x-1/2 pt-4 opacity-0 transition-all duration-200 group-hover:pointer-events-auto group-hover:visible group-hover:opacity-100">
-      <div className="rounded-md border border-navy/10 bg-white p-2 shadow-xl">
-        <a href="/app-download#ios" className="block rounded px-3 py-2 text-sm font-semibold text-navy/80 hover:bg-navy/5 hover:text-navy">iOS App</a>
-        <a href="/app-download#android" className="block rounded px-3 py-2 text-sm font-semibold text-navy/80 hover:bg-navy/5 hover:text-navy">Android App</a>
-      </div>
-    </div>
-  </div>
-);
-
 const BookingMenu = ({ light }) => (
   <div className="group relative">
     <a
@@ -93,9 +74,7 @@ export default function Header() {
           <Logo light={light} />
           <nav className="hidden items-center gap-8 lg:flex">
             {HEADER_LINKS.map((l) => (
-              l.label === "App Download+" ? (
-                <AppDownloadMenu key={l.href} light={light} />
-              ) : l.label === "Book My Stay" ? (
+              l.label === "Book My Stay" ? (
                 <BookingMenu key={l.href} light={light} />
               ) : (
                 <NavLink

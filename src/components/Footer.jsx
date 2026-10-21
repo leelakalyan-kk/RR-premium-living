@@ -1,6 +1,6 @@
 import { FacebookLogo, InstagramLogo, Phone } from "@phosphor-icons/react";
 import { LogoMark } from "@/components/Logo";
-import { CONTACT_PHONE_DISPLAY, NAV_LINKS } from "@/constants/site";
+import { CONTACT_PHONE_DISPLAY, NAV_LINKS, WHATSAPP_NUMBER } from "@/constants/site";
 
 export default function Footer({ property }) {
   const year = new Date().getFullYear();
@@ -12,7 +12,6 @@ export default function Footer({ property }) {
     { label: "Apply Now", href: "#apply" },
     { label: "Book Your Stay", href: "/booking/online" },
     { label: "FAQs", href: "/faqs" },
-    { label: "App Download", href: "/app-download" },
     { label: "Terms and Conditions", href: "/booking/policies" },
   ];
 
@@ -30,7 +29,7 @@ export default function Footer({ property }) {
             </div>
             <p className="mt-4 max-w-sm text-sm leading-relaxed text-ivory/55">
               {property
-                ? `${property.name} is part of RR Premium Living — premium PG and co-living spaces built for comfortable, well-managed living.`
+                ? `Explore ${property.audienceLabel.toLowerCase()} at RR Premium Living — a comfortable, well-managed community.`
                 : "Premium PG & co-living spaces for students and working professionals — in Hyderabad and Bangalore."}
             </p>
             <div className="mt-5 flex items-center gap-3">
@@ -74,6 +73,9 @@ export default function Footer({ property }) {
                   </li>
                 ))}
               </ul>
+              <p className="mt-3 text-[11px] font-bold uppercase tracking-[0.24em] text-ivory/40">
+                Hyderabad · Bangalore
+              </p>
             </div>
             <div>
               <p className="mb-3 text-[11px] font-bold uppercase tracking-[0.3em] text-gold">
@@ -82,7 +84,7 @@ export default function Footer({ property }) {
               <ul className="space-y-2">
                 <li>
                   <a
-                    href={`tel:+${"919000000000"}`}
+                    href={`tel:+${WHATSAPP_NUMBER}`}
                     data-testid="footer-contact-phone"
                     className="flex items-center gap-3 text-sm font-semibold text-ivory/70 transition-colors hover:text-gold-light"
                   >
@@ -90,9 +92,6 @@ export default function Footer({ property }) {
                   </a>
                 </li>
               </ul>
-              <p className="mt-3 text-[11px] font-bold uppercase tracking-[0.24em] text-ivory/40">
-                Hyderabad · Bangalore
-              </p>
             </div>
           </div>
         </div>

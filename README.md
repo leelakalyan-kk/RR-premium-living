@@ -1,14 +1,13 @@
 # RR Premium Living
 
 Responsive marketing and information website for RR Premium Living, a PG and
-co-living brand serving students and working professionals in Hyderabad and
-Bangalore.
+co-living community serving students and working professionals.
 
 ## Website features
 
 - Home page with property highlights, accommodation options, amenities, food,
   house rules, and an application form.
-- Locations directory with filters for men's spaces, women's spaces, and
+- Living options directory with filters for men's spaces, women's spaces, and
   co-living properties.
 - Individual property pages with photos, amenities, nearby places, resident
   testimonials, and food information.
@@ -23,14 +22,14 @@ Bangalore.
 | URL | Page |
 | --- | --- |
 | `/` | Home page |
-| `/locations` | Property directory and space filters |
-| `/locations/rr-gachibowli` | RR Gachibowli Heights property details |
-| `/locations/rr-madhapur` | RR Madhapur Living property details |
-| `/locations/rr-whitefield` | RR Whitefield House property details |
+| `/locations` | Living options and space filters for one PG |
+| `/locations/rr-mens` | Men's living details at the PG |
+| `/locations/rr-womens` | Women's living details at the PG |
+| `/locations/rr-coliving` | Co-living details at the PG |
 | `/booking/online` | Online booking preferences and review |
 | `/booking/process` | Booking steps |
 | `/booking/policies` | Booking guidelines and policies |
-| `/contact` | Property admissions contacts and resident grievance form |
+| `/contact` | Admissions contacts and resident grievance form |
 | `/faqs` | Frequently asked questions |
 | `/app-download` | iOS and Android app information |
 
@@ -41,9 +40,11 @@ The home page uses hash links for its sections, including `/#spaces`,
 
 - **Home page application form:** validates the mobile number and opens WhatsApp
   with the application details pre-filled. The visitor must send the message in
-  WhatsApp to deliver it to the admissions team.
+  WhatsApp to deliver it to the admissions team. The form clears after WhatsApp
+  opens successfully; the site cannot verify whether the message was sent.
 - **Online booking:** collects preferences and displays a review/confirmation
-  screen in the browser. It currently does not send or persist booking data.
+  screen in the browser. Past move-in dates are not accepted. It currently does
+  not send or persist booking data.
 - **Resident grievance form:** currently displays an in-page confirmation only;
   it is not connected to an email service or backend.
 - **App downloads:** store links are not configured yet; the page is marked
@@ -108,6 +109,21 @@ refreshes the page when source files change.
 
 The project does not currently define a test or lint script.
 
+## Run with Docker
+
+Build the production image and start the website with Docker Compose:
+
+```bash
+docker compose up --build
+```
+
+Open [http://localhost:8080/](http://localhost:8080/). Compose serves the
+production build through Nginx, including client-side routes such as
+`/locations` and `/contact`.
+
+Stop the container with `Ctrl+C`, or run `docker compose down` in another
+terminal.
+
 ## Project structure
 
 ```text
@@ -125,8 +141,8 @@ src/
     Header.jsx                 Main navigation
     Hero.jsx                   Home page hero
     LocationDetailPage.jsx     Individual property details
-    Locations.jsx              Home page location highlights
-    LocationsPage.jsx          Property directory and filters
+    Locations.jsx              Shared PG overview
+    LocationsPage.jsx          Living options and filters
     Marquee.jsx                Home page editorial marquee
     Rules.jsx                  Home page house rules
     SectionHead.jsx            Shared section headings and captions

@@ -1,13 +1,13 @@
 import { useState } from "react";
 import { toast } from "sonner";
 import { ArrowLeft, CheckCircle } from "@phosphor-icons/react";
-import { IMAGES } from "@/constants/site";
+import { IMAGES, WHATSAPP_NUMBER } from "@/constants/site";
 import Footer from "@/components/Footer";
 import { Caption } from "@/components/SectionHead";
 
 function BookingProcess() {
   const steps = [
-    ["01", "Meet", "Speak with our admissions team and tour your preferred property.", "/booking-meet.png", "object-[68%_center]"],
+    ["01", "Meet", "Speak with our admissions team and tour the PG.", "/booking-meet.png", "object-[68%_center]"],
     ["02", "Application & Booking", "Submit your details, select a room, review the booking summary, and pay securely.", "/booking-application.png"],
     ["03", "Room Allotment", "Once verified, receive your room allotment and move-in instructions.", "/booking-allotment.png"],
   ];
@@ -21,21 +21,39 @@ function BookingProcess() {
   </BookingShell>;
 }
 
-function BookingShell({ title, intro, sideIntro, children }) {
-  return <><main className="relative z-[2] min-h-screen bg-paper pb-24 pt-32"><div className="mx-auto max-w-7xl px-4 md:px-8">
-    <a href="/" className="mb-10 inline-flex items-center gap-2 text-xs font-bold uppercase tracking-[0.2em] text-navy/60"><ArrowLeft size={16} /> Back to home</a>
-    <div className="mb-12 flex flex-col gap-6 lg:flex-row lg:items-end lg:justify-between">
-      <div className="max-w-2xl"><p className="mb-4 text-xs font-bold uppercase tracking-[0.3em] text-gold-deep">Book Your Stay</p><h1 className="font-display text-5xl font-extrabold tracking-tight text-navy md:text-7xl">{title}</h1>{intro && <Caption className="mt-5">{intro}</Caption>}</div>
-      {sideIntro && <Caption className="mb-0 max-w-sm shrink-0 lg:mb-1">{sideIntro}</Caption>}
-    </div>
-    {children}
-  </div></main><Footer /></>;
+function BookingShell({ title, intro, sideIntro, sideIntroClassName = "", children }) {
+  const supportingText = sideIntro || intro;
+
+  return (
+    <>
+      <main className="relative z-[2] min-h-screen bg-paper pb-24 pt-32">
+        <div className="mx-auto max-w-7xl px-4 md:px-8">
+          <a href="/" className="mb-10 inline-flex items-center gap-2 text-xs font-bold uppercase tracking-[0.2em] text-navy/60">
+            <ArrowLeft size={16} /> Back to home
+          </a>
+          <div className="mb-12 flex flex-col gap-6 lg:flex-row lg:items-start lg:justify-between">
+            <div className="max-w-3xl">
+              <p className="mb-4 text-xs font-bold uppercase tracking-[0.3em] text-gold-deep">Book Your Stay</p>
+              <h1 className="font-display text-5xl font-extrabold tracking-tight text-navy md:text-6xl xl:text-7xl">{title}</h1>
+            </div>
+            {supportingText && (
+              <Caption className={`mt-0 max-w-sm shrink-0 self-start text-base md:text-lg ${sideIntroClassName}`}>
+                {supportingText}
+              </Caption>
+            )}
+          </div>
+          {children}
+        </div>
+      </main>
+      <Footer />
+    </>
+  );
 }
 
 const INITIAL_BOOKING = {
   name: "",
   mobile: "",
-  location: "",
+  livingOption: "",
   gender: "",
   sharing: "",
   roomType: "",
@@ -44,10 +62,19 @@ const INITIAL_BOOKING = {
   query: "",
 };
 
+function getTodayDate() {
+  const today = new Date();
+  const year = today.getFullYear();
+  const month = String(today.getMonth() + 1).padStart(2, "0");
+  const day = String(today.getDate()).padStart(2, "0");
+  return `${year}-${month}-${day}`;
+}
+
 function OnlineBooking() {
   const [details, setDetails] = useState(INITIAL_BOOKING);
   const [preview, setPreview] = useState(false);
   const [submitted, setSubmitted] = useState(false);
+  const minMoveInDate = getTodayDate();
 
   const update = (event) => {
     const { name, value } = event.target;
@@ -60,20 +87,46 @@ function OnlineBooking() {
       toast.error("Please enter a valid 10-digit mobile number.");
       return;
     }
+    if (details.moveInDate < minMoveInDate) {
+      toast.error("Please choose today or a future move-in date.");
+      return;
+    }
     setPreview(true);
   };
 
   const handleSubmit = () => {
+    const message = [
+      "New Booking Request — RR Premium Living",
+      "----------------------------------------",
+      `Full Name: ${details.name}`,
+      `Mobile: ${details.mobile}`,
+      `Preferred Living Option: ${details.livingOption}`,
+      `Gender: ${details.gender}`,
+      `Room Sharing: ${details.sharing}`,
+      `Room Type: ${details.roomType}`,
+      `Expected Move-in Date: ${details.moveInDate}`,
+      `Stay Duration: ${details.duration}`,
+      `Query: ${details.query || "None"}`,
+      "----------------------------------------",
+    ].join("\n");
+    const whatsappWindow = window.open(
+      `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`,
+      "_blank"
+    );
+    if (!whatsappWindow) {
+      toast.error("WhatsApp could not be opened. Please allow pop-ups and try again.");
+      return;
+    }
     setSubmitted(true);
-    toast.success("Your booking request has been submitted.");
+    toast.success("WhatsApp opened. Send your message there to submit the booking request.");
   };
 
   if (submitted) {
-    return <BookingShell title="Request received" intro="Thank you. Our admissions team will contact you shortly to confirm availability.">
-      <div className="max-w-2xl rounded-2xl bg-navy p-8 text-ivory md:p-10">
+    return <BookingShell title="Booking request ready" sideIntro="Your booking details are prepared in WhatsApp. Send the message there so our admissions team can follow up.">
+      <div className="w-full rounded-2xl bg-navy p-8 text-ivory md:p-10">
         <CheckCircle size={42} weight="fill" className="text-gold" />
-        <h2 className="mt-5 font-display text-3xl font-extrabold">Booking request submitted</h2>
-        <p className="mt-3 leading-relaxed text-ivory/75">We have received your preferences for {details.location}. Keep your phone available for our confirmation call.</p>
+        <h2 className="mt-5 font-display text-3xl font-extrabold">Send your request in WhatsApp</h2>
+        <p className="mt-3 leading-relaxed text-ivory/75">Your preferences for {details.livingOption} are ready. Send the pre-filled message in WhatsApp to submit your request.</p>
         <a href="/" className="mt-7 inline-flex rounded-xl bg-gold px-6 py-3 text-sm font-bold uppercase tracking-[0.14em] text-navy">Back to home</a>
       </div>
     </BookingShell>;
@@ -87,11 +140,11 @@ function OnlineBooking() {
             <div className="grid grid-cols-1 gap-5 sm:grid-cols-2">
               <Field label="Full Name *" name="name" value={details.name} onChange={update} placeholder="Enter your full name" required />
               <Field label="Mobile Number *" name="mobile" value={details.mobile} onChange={update} placeholder="10-digit mobile number" type="tel" inputMode="numeric" pattern="[0-9]{10}" maxLength={10} required />
-              <SelectField label="Preferred Location *" name="location" value={details.location} onChange={update} options={["Hyderabad", "Bangalore"]} required />
+              <SelectField label="Preferred Living Option *" name="livingOption" value={details.livingOption} onChange={update} options={["Men's Living", "Women's Living", "Co-living"]} required />
               <SelectField label="Gender *" name="gender" value={details.gender} onChange={update} options={["Male", "Female", "Other"]} required />
-              <SelectField label="Room Sharing *" name="sharing" value={details.sharing} onChange={update} options={["2 Sharing", "3 Sharing", "4 Sharing", "5 Sharing"]} required />
+              <SelectField label="Room Sharing *" name="sharing" value={details.sharing} onChange={update} options={["1 Sharing", "2 Sharing", "3 Sharing", "4 Sharing", "5 Sharing"]} required />
               <SelectField label="Room Type *" name="roomType" value={details.roomType} onChange={update} options={["AC", "Non-AC"]} required />
-              <Field label="Expected Move-in Date *" name="moveInDate" value={details.moveInDate} onChange={update} type="date" required />
+              <Field label="Expected Move-in Date *" name="moveInDate" value={details.moveInDate} onChange={update} type="date" min={minMoveInDate} required />
               <SelectField label="Stay Duration *" name="duration" value={details.duration} onChange={update} options={["1–3 months", "3–6 months", "6–12 months", "12+ months"]} required />
               <div className="sm:col-span-2">
                 <label htmlFor="booking-query" className="mb-2 block text-xs font-bold uppercase tracking-[0.18em] text-navy/70">Query</label>
@@ -136,9 +189,83 @@ function SelectField({ label, name, value, onChange, options, required }) {
 }
 
 function Policies() {
-  const policies = ["A valid government ID and recent photo are required for verification.", "Room availability is confirmed only after document review and payment.", "Security deposit, rent, and any applicable maintenance charges are shown before payment.", "Residents must follow property safety, visitor, quiet-hours, and payment guidelines.", "Cancellation and refund terms will be shared with the final booking summary."];
-  return <BookingShell title="Guidelines & Policies" intro="Please review these static guidelines before submitting a booking request.">
-    <div className="max-w-3xl rounded-md bg-navy p-7 text-ivory md:p-10"><ul className="space-y-6">{policies.map((policy) => <li key={policy} className="flex gap-3 text-sm leading-relaxed text-ivory/80"><CheckCircle size={20} className="shrink-0 text-gold" weight="fill" />{policy}</li>)}</ul></div>
+  const policies = [
+    {
+      title: "Before you book",
+      items: [
+        "Choose your preferred living option, room-sharing option, AC or Non-AC room, move-in date, and stay duration.",
+        "A valid government ID and a recent photo are required for verification.",
+        "Contact admissions to confirm current availability or arrange a visit before making your decision.",
+      ],
+    },
+    {
+      title: "Rent and payments",
+      items: [
+        "The monthly rent cycle runs from the 1st to the end of the month.",
+        "Advance fees are due by the 5th of each month.",
+        "Security deposit and maintenance fees are paid separately. Confirm the amounts and due dates with admissions before paying.",
+      ],
+    },
+    {
+      title: "Confirmation and move-in",
+      items: [
+        "Room availability is confirmed after document review and payment.",
+        "Review your booking summary carefully, including living option, room type, sharing, move-in date, and listed charges.",
+        "If any detail is unclear or incorrect, contact admissions before completing payment or move-in arrangements.",
+      ],
+    },
+    {
+      title: "Living at the property",
+      items: [
+        "Night entry is allowed only up to 11:00 PM.",
+        "Outside visitors are not allowed to stay overnight at the property.",
+        "Pets are not allowed at the property.",
+        "Follow PG safety guidance and take care of shared spaces and facilities.",
+        "Ask the PG team about any house rules before moving in.",
+      ],
+    },
+    {
+      title: "Noise & respectful conduct",
+      items: [
+        "Keep noise at a considerate level, especially during quiet hours.",
+        "Treat residents, visitors, and property staff with respect.",
+        "Raise concerns calmly with the PG team so they can help resolve them.",
+      ],
+    },
+    {
+      title: "Cancellations and refunds",
+      items: [
+        "Cancellation and refund terms are provided with the final booking summary.",
+        "Review those terms and ask admissions to clarify anything you are unsure about before payment.",
+        "Keep your booking summary and payment confirmation for reference.",
+      ],
+    },
+  ];
+  return <BookingShell title="Guidelines & Policies" intro="Review the booking, payment, and house guidelines below. Confirm current charges and terms with admissions before paying.">
+    <div className="mx-auto grid max-w-6xl gap-5 md:grid-cols-2">
+      {policies.map(({ title: sectionTitle, items }) => (
+        <section key={sectionTitle} className="rounded-2xl border border-navy/10 bg-white p-6 shadow-sm md:p-8">
+          <h2 className="font-display text-2xl font-extrabold text-navy">{sectionTitle}</h2>
+          <ul className="mt-5 space-y-4">
+            {items.map((policy) => (
+              <li key={policy} className="flex gap-3 text-sm leading-relaxed text-navy/70">
+                <CheckCircle size={20} className="shrink-0 text-gold-deep" weight="fill" />
+                <span>{policy}</span>
+              </li>
+            ))}
+          </ul>
+        </section>
+      ))}
+      <aside className="rounded-2xl bg-navy p-6 text-ivory md:col-span-2 md:p-8">
+        <h2 className="font-display text-2xl font-extrabold">Need help before booking?</h2>
+        <p className="mt-2 max-w-3xl text-sm leading-relaxed text-ivory/75">
+          Contact admissions for current availability, house rules, charges, and written cancellation or refund terms before booking.
+        </p>
+        <a href="/contact" className="mt-5 inline-flex rounded-xl bg-gold px-6 py-3 text-xs font-bold uppercase tracking-[0.14em] text-navy hover:bg-gold-light">
+          Contact admissions
+        </a>
+      </aside>
+    </div>
   </BookingShell>;
 }
 

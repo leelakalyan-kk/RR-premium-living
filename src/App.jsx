@@ -43,7 +43,9 @@ class ErrorBoundary extends Component {
 }
 
 function App() {
-  const isLocationsPage = window.location.pathname === "/locations";
+  const isLocationsPage =
+    window.location.pathname === "/locations" ||
+    window.location.pathname.startsWith("/locations/");
   const locationDetailId = window.location.pathname.match(/^\/locations\/([^/]+)$/)?.[1];
   const locationDetail = LOCATION_PROPERTIES.find((property) => property.id === locationDetailId);
   const standalonePage = window.location.pathname;

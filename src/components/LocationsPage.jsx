@@ -3,7 +3,6 @@ import {
   ArrowRight,
   GenderFemale,
   GenderMale,
-  MapPin,
   Snowflake,
   UsersThree,
 } from "@phosphor-icons/react";
@@ -59,13 +58,13 @@ export default function LocationsPage() {
         </a>
         <div className="mb-12 flex flex-col gap-6 lg:flex-row lg:items-end lg:justify-between">
           <div className="max-w-2xl">
-            <p className="mb-4 text-xs font-bold uppercase tracking-[0.3em] text-gold-deep">Our properties</p>
+            <p className="mb-4 text-xs font-bold uppercase tracking-[0.3em] text-gold-deep">One PG, three living options</p>
             <h1 className="font-display text-5xl font-extrabold tracking-tight text-navy md:text-7xl">
               Find your next place to live.
             </h1>
           </div>
           <Caption className="mt-0 max-w-sm text-base md:text-lg">
-            Explore RR Premium Living PGs by city, room sharing, air-conditioning, and the community they are designed for.
+            Choose men's living, women's living, or co-living in the same RR Premium Living PG.
           </Caption>
         </div>
         <div className="mb-10 flex flex-wrap items-center gap-3" aria-label="Filter properties by space">
@@ -102,9 +101,6 @@ export default function LocationsPage() {
                     Co-living from 2 persons
                   </span>
                 )}
-                <p className="absolute bottom-4 left-5 flex items-center gap-1.5 text-xs font-semibold text-ivory/85">
-                  <MapPin size={15} weight="fill" className="text-gold-light" /> {property.location}
-                </p>
               </div>
               <div className="p-6">
                 <h2 className="font-display text-2xl font-extrabold tracking-tight text-navy">{property.name}</h2>

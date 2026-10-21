@@ -1,5 +1,5 @@
-export const WHATSAPP_NUMBER = "919000000000";
-export const CONTACT_PHONE_DISPLAY = "+91 90000 00000";
+export const WHATSAPP_NUMBER = "918074095895";
+export const CONTACT_PHONE_DISPLAY = "+91 80740 95895";
 export const CONTACT_EMAIL = "info@rrpremiumliving.com";
 
 export const NAV_LINKS = [
@@ -15,7 +15,6 @@ export const HEADER_LINKS = [
   { label: "Home", href: "/" },
   { label: "Locations", href: "/locations" },
   { label: "Spaces", href: "/#spaces" },
-  { label: "App Download+", href: "/app-download" },
   { label: "Book My Stay", href: "/booking/online" },
   { label: "Contact", href: "/contact" },
   { label: "FAQs", href: "/faqs" },
@@ -34,7 +33,7 @@ export const IMAGES = {
     "https://images.unsplash.com/photo-1764006195843-e6f9a5781500?auto=format&fit=crop&w=1000&q=80",
   kitchen:
     "https://images.unsplash.com/photo-1600489000022-c2086d79f9d4?auto=format&fit=crop&w=1200&q=80",
-  gym: "https://images.unsplash.com/photo-1761971976282-b2bb051a5474?auto=format&fit=crop&w=1200&q=80",
+  gym: "/gym.png",
   food: "https://images.unsplash.com/photo-1559561724-732dbca7be1e?auto=format&fit=crop&w=1200&q=80",
 };
 
@@ -88,7 +87,7 @@ export const SPACES = [
 ];
 
 export const PROPERTY_STATS = [
-  { id: "properties", label: "Properties", value: "2+" },
+  { id: "living-options", label: "Living Options", value: "3" },
   { id: "amenities", label: "Amenities", value: "18+" },
   { id: "residents", label: "Residents", value: "300+" },
   { id: "beds-in-progress", label: "Beds in Progress", value: "400+" },
@@ -96,58 +95,49 @@ export const PROPERTY_STATS = [
 
 export const LOCATION_PROPERTIES = [
   {
-    id: "rr-gachibowli",
-    name: "RR Gachibowli Heights",
-    location: "Gachibowli, Hyderabad",
+    id: "rr-mens",
+    name: "Men's Living",
     image: "/location-gachibowli.png",
     audience: "male",
     audienceLabel: "For Men",
-    sharing: [1, 2, 3, 4],
+    sharing: [1, 2, 3, 4, 5],
     airConditioning: ["AC", "Non-AC"],
-    details: "Quiet, fully furnished rooms close to Hyderabad's tech corridor.",
-    contact: { name: "Gachibowli Admissions", phone: "+91 90000 00001", email: "gachibowli@rrpremiumliving.com" },
-    counts: { joined: "120+", floors: "6", amenities: "25+", security: "24/7" },
+    details: "Comfortable, fully furnished rooms designed for focused everyday living.",
+    contact: { name: "Admissions Team", phone: CONTACT_PHONE_DISPLAY, email: CONTACT_EMAIL },
     exclusive: ["Study-friendly rooms", "Daily housekeeping", "High-speed Wi-Fi"],
-    nearby: ["Gachibowli Circle · 500m", "Financial District · 1.2km", "ISB Road · 2.4km"],
-    gallery: ["/location-gachibowli.png", IMAGES.mens, IMAGES.kitchen],
+    gallery: ["/location-gachibowli.png", IMAGES.womens, IMAGES.kitchen],
     food: ["Idli, Sambar, Chutney", "Rice, Dal, Veg Curry, Curd", "Chapati, Paneer Curry"],
     residents: ["The rooms are calm, clean, and close to everything I need.", "The support team made moving in very easy."],
   },
   {
-    id: "rr-madhapur",
-    name: "RR Madhapur Living",
-    location: "Madhapur, Hyderabad",
+    id: "rr-womens",
+    name: "Women's Living",
     image: IMAGES.mens,
     audience: "female",
     audienceLabel: "For Women",
-    sharing: [1, 2, 3],
+    sharing: [1, 2, 3, 4, 5],
     airConditioning: ["AC", "Non-AC"],
-    details: "Secure women-focused living with easy access to offices and campuses.",
-    contact: { name: "Madhapur Admissions", phone: "+91 90000 00002", email: "madhapur@rrpremiumliving.com" },
-    counts: { joined: "95+", floors: "5", amenities: "23+", security: "24/7" },
+    details: "Secure women-focused living with comfortable rooms and daily housekeeping.",
+    contact: { name: "Admissions Team", phone: CONTACT_PHONE_DISPLAY, email: CONTACT_EMAIL },
     exclusive: ["Women-focused security", "Homely meals", "Daily housekeeping"],
-    nearby: ["Madhapur Metro · 500m", "Ayyappa Society · 900m", "HITEC City · 1.8km"],
     gallery: [IMAGES.mens, IMAGES.womens, IMAGES.kitchen],
     food: ["Dosa, Chutney", "Rice, Sambar, Potato Fry", "Chapati, Dal Fry"],
-    residents: ["It feels safe, warm, and genuinely well managed.", "The location makes my daily commute simple."],
+    residents: ["It feels safe, warm, and genuinely well managed.", "The daily routine here is comfortable and easy."],
   },
   {
-    id: "rr-whitefield",
-    name: "RR Whitefield House",
-    location: "Whitefield, Bangalore",
+    id: "rr-coliving",
+    name: "Co-living",
     image: "/location-whitefield.png",
     audience: "co-living",
     audienceLabel: "Co-living",
-    sharing: [2, 4],
+    sharing: [2, 3, 4, 5],
     airConditioning: ["AC", "Non-AC"],
     details: "Community-first co-living with comfortable rooms and shared spaces.",
-    contact: { name: "Whitefield Admissions", phone: "+91 90000 00003", email: "whitefield@rrpremiumliving.com" },
-    counts: { joined: "140+", floors: "7", amenities: "28+", security: "24/7" },
+    contact: { name: "Admissions Team", phone: CONTACT_PHONE_DISPLAY, email: CONTACT_EMAIL },
     exclusive: ["Open kitchen", "Community events", "Play area & indoor games"],
-    nearby: ["ITPL Main Road · 500m", "Phoenix Marketcity · 1.5km", "Whitefield Metro · 2km"],
     gallery: ["/location-whitefield.png", IMAGES.coliving, IMAGES.kitchen],
     food: ["Poha, Tea", "Veg Pulao, Raita", "Fried Rice, Manchurian"],
-    residents: ["The community makes a new city feel like home.", "I love the shared spaces and easy access to work."],
+    residents: ["The community makes it easy to feel at home.", "I love the shared spaces and friendly atmosphere."],
   },
 ];
 
@@ -163,7 +153,7 @@ export const AMENITIES = [
   { id: "wifi", label: "High-Speed Wi-Fi", icon: "WifiHigh", info: "Stay connected for study, work, streaming, and everyday communication.", image: "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=600&q=80" },
   { id: "lift", label: "Lift Access", icon: "Elevator", info: "Lift access makes moving between floors convenient for everyone.", image: "/lift.png" },
   { id: "ac", label: "AC & Non-AC Rooms", icon: "Snowflake", info: "Choose a room style that matches your comfort and budget preferences.", image: IMAGES.hero },
-  { id: "games", label: "Play Area with Indoor Games", icon: "Crown", info: "Relax and connect with fellow residents through indoor games and leisure time.", image: "https://images.unsplash.com/photo-1610890716171-6b1bb98ffd09?auto=format&fit=crop&w=600&q=80" },
+  { id: "games", label: "Play Area with Indoor Games", icon: "Crown", info: "Relax and connect with fellow residents through indoor games and leisure time.", image: "/games.png" },
 ];
 
 export const MENU = [

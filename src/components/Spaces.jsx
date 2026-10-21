@@ -4,7 +4,7 @@ import { PROPERTY_STATS, SPACES } from "@/constants/site";
 
 export default function Spaces() {
   const statIcons = {
-    properties: BuildingOffice,
+    "living-options": BuildingOffice,
     amenities: Sparkle,
     residents: Users,
     "beds-in-progress": Bed,

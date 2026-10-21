@@ -8,7 +8,7 @@ import { CONTACT_EMAIL, CONTACT_PHONE_DISPLAY, WHATSAPP_NUMBER } from "@/constan
 import SectionHead, { FadeIn } from "@/components/SectionHead";
 
 const STEPS = [
-  "Submit the form below — it opens WhatsApp with your details pre-filled.",
+  "Fill the form below, then send the pre-filled application message in WhatsApp.",
   "Our team calls you back to confirm availability and answer questions.",
   "Visit the space, complete your advance & deposit, and move in.",
 ];
@@ -54,9 +54,15 @@ export default function ApplyForm() {
       toast.error("Please enter a valid 10-digit mobile number.");
       return;
     }
+    if (!/^(1[6-9]|[2-9]\d)$/.test(d.age)) {
+      toast.error("Please enter an age between 16 and 99.");
+      return;
+    }
+    const form = e.currentTarget;
     const win = openWhatsApp(d);
     if (win) {
-      toast.success("Opening WhatsApp with your application details.");
+      form.reset();
+      toast.success("Application details are ready in WhatsApp. Send the message to submit.");
     } else {
       toast.error("WhatsApp could not be opened. Please allow pop-ups and try again.");
     }
@@ -138,9 +144,10 @@ export default function ApplyForm() {
                   <input
                     id="apply-age"
                     name="age"
-                    type="number"
-                    min="16"
-                    max="99"
+                    type="text"
+                    inputMode="numeric"
+                    pattern="(1[6-9]|[2-9][0-9])"
+                    maxLength={2}
                     required
                     placeholder="e.g. 21"
                     className="field-input age-input"
@@ -198,8 +205,6 @@ export default function ApplyForm() {
                     pattern="[0-9]{10}"
                     maxLength={10}
                     required
-                    inputMode="numeric"
-                    maxLength={10}
                     placeholder="10-digit mobile number"
                     className="field-input"
                     data-testid="apply-input-mobile"
@@ -250,7 +255,7 @@ export default function ApplyForm() {
                 </button>
               </div>
               <p className="mt-4 text-xs leading-relaxed text-navy/50">
-                Submitting opens WhatsApp with your application pre-filled for our team.
+                Your details will be pre-filled in WhatsApp. Send that message to complete your application.
               </p>
             </form>
           </FadeIn>

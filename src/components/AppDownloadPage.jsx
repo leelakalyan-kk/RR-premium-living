@@ -12,10 +12,12 @@ export default function AppDownloadPage() {
     <>
       <main id="app-download" className="relative z-[2] min-h-screen bg-paper pb-24 pt-32">
         <div className="mx-auto max-w-5xl px-4 md:px-8">
-          <div className="mb-12 max-w-2xl">
-            <p className="mb-4 text-xs font-bold uppercase tracking-[0.3em] text-gold-deep">RR on the go</p>
-            <h1 className="font-display text-5xl font-extrabold tracking-tight text-navy md:text-7xl">Download the app.</h1>
-            <Caption className="mt-5 max-w-2xl text-base md:text-lg">
+          <div className="mb-12 flex flex-col gap-6 md:flex-row md:items-start md:justify-between">
+            <div>
+              <p className="mb-4 text-xs font-bold uppercase tracking-[0.3em] text-gold-deep">RR on the go</p>
+              <h1 className="font-display text-5xl font-extrabold tracking-tight text-navy md:text-7xl">Download the app.</h1>
+            </div>
+            <Caption className="mt-0 max-w-sm text-base md:mt-2 md:text-right md:text-lg">
               Choose your platform to stay close to your property, booking, and resident updates.
             </Caption>
           </div>
