@@ -109,21 +109,6 @@ refreshes the page when source files change.
 
 The project does not currently define a test or lint script.
 
-## Run with Docker
-
-Build the production image and start the website with Docker Compose:
-
-```bash
-docker compose up --build
-```
-
-Open [http://localhost:8080/](http://localhost:8080/). Compose serves the
-production build through Nginx, including client-side routes such as
-`/locations` and `/contact`.
-
-Stop the container with `Ctrl+C`, or run `docker compose down` in another
-terminal.
-
 ## Project structure
 
 ```text
@@ -168,28 +153,7 @@ in `public/` and referenced from the relevant component or content entry.
 
 The repository includes a Vercel configuration. Vercel installs dependencies
 with `npm install`, runs `npm run build`, and serves the generated `dist/`
-directory.
-
-## VS Code Bedrock task
-
-The repository also includes a VS Code task for calling the configured Amazon
-Bedrock inference profile. AWS credentials are not stored in the repository.
-To use it:
-
-1. Install and authenticate the AWS CLI:
-
-   ```powershell
-   aws configure
-   aws sts get-caller-identity
-   ```
-
-2. Ensure the authenticated AWS identity can call `bedrock:Converse` in
-   `ap-south-1`.
-3. In VS Code, select **Terminal > Run Task > Bedrock: Converse with Claude
-   Opus 5.5** and enter a prompt.
-
-The response appears in the task terminal. This task does not change the model
-used by GitHub Copilot Chat.
+directory. Import the GitHub repository into Vercel to deploy it.
 
 ## Contributing
 
