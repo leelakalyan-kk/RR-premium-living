@@ -15,8 +15,12 @@ const FAQS = [
 export default function FaqsPage() {
   return (
     <>
-      <main id="faq" className="relative z-[2] min-h-screen bg-paper pb-24 pt-32">
-        <div className="mx-auto max-w-7xl px-4 md:px-8">
+      <main id="faq" className="relative z-[2] min-h-screen overflow-hidden bg-paper pb-24 pt-32">
+        <div
+          aria-hidden="true"
+          className="pointer-events-none absolute inset-0 bg-[url('/why-choose-rr.png')] bg-cover bg-center opacity-[0.35]"
+        />
+        <div className="relative z-10 mx-auto max-w-7xl px-4 md:px-8">
           <div className="mb-12 flex flex-col gap-6 lg:flex-row lg:items-start lg:justify-between">
             <div className="max-w-3xl">
               <p className="mb-4 text-xs font-bold uppercase tracking-[0.3em] text-gold-deep">Need to know</p>

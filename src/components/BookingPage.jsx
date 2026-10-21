@@ -21,13 +21,20 @@ function BookingProcess() {
   </BookingShell>;
 }
 
-function BookingShell({ title, intro, sideIntro, sideIntroClassName = "", children }) {
+function BookingShell({ title, intro, sideIntro, sideIntroClassName = "", backgroundImage, children }) {
   const supportingText = sideIntro || intro;
 
   return (
     <>
-      <main className="relative z-[2] min-h-screen bg-paper pb-24 pt-32">
-        <div className="mx-auto max-w-7xl px-4 md:px-8">
+      <main className={`relative z-[2] min-h-screen overflow-hidden pb-24 pt-32 ${backgroundImage ? "bg-transparent" : "bg-paper"}`}>
+        {backgroundImage && (
+          <div
+            aria-hidden="true"
+            className="pointer-events-none absolute inset-0 bg-cover bg-center opacity-30"
+            style={{ backgroundImage: `url("${backgroundImage}")` }}
+          />
+        )}
+        <div className="relative z-10 mx-auto max-w-7xl px-4 md:px-8">
           <a href="/" className="mb-10 inline-flex items-center gap-2 text-xs font-bold uppercase tracking-[0.2em] text-navy/60">
             <ArrowLeft size={16} /> Back to home
           </a>
@@ -122,7 +129,7 @@ function OnlineBooking() {
   };
 
   if (submitted) {
-    return <BookingShell title="Booking request ready" sideIntro="Your booking details are prepared in WhatsApp. Send the message there so our admissions team can follow up.">
+    return <BookingShell title="Booking request ready" sideIntro="Your booking details are prepared in WhatsApp. Send the message there so our admissions team can follow up." backgroundImage="/booking-application.png">
       <div className="w-full rounded-2xl bg-navy p-8 text-ivory md:p-10">
         <CheckCircle size={42} weight="fill" className="text-gold" />
         <h2 className="mt-5 font-display text-3xl font-extrabold">Send your request in WhatsApp</h2>
@@ -132,7 +139,7 @@ function OnlineBooking() {
     </BookingShell>;
   }
 
-  return <BookingShell title="Online Booking" sideIntro="Share your stay preferences, review the details, and submit your booking request.">
+  return <BookingShell title="Online Booking" sideIntro="Share your stay preferences, review the details, and submit your booking request." backgroundImage="/booking-application.png">
     <div className="grid items-start gap-8 lg:grid-cols-[minmax(0,1.35fr)_minmax(18rem,0.65fr)]">
       <div>
         {!preview ? (
@@ -241,7 +248,7 @@ function Policies() {
       ],
     },
   ];
-  return <BookingShell title="Guidelines & Policies" intro="Review the booking, payment, and house guidelines below. Confirm current charges and terms with admissions before paying.">
+  return <BookingShell title="Guidelines & Policies" intro="Review the booking, payment, and house guidelines below. Confirm current charges and terms with admissions before paying." backgroundImage="https://images.unsplash.com/photo-1450101499163-c8848c66ca85?auto=format&fit=crop&w=2000&q=80">
     <div className="mx-auto grid max-w-6xl gap-5 md:grid-cols-2">
       {policies.map(({ title: sectionTitle, items }) => (
         <section key={sectionTitle} className="rounded-2xl border border-navy/10 bg-white p-6 shadow-sm md:p-8">
