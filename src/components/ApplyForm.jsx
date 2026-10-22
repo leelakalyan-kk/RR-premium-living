@@ -2,9 +2,8 @@ import { toast } from "sonner";
 import {
   ArrowRight,
   Phone,
-  EnvelopeSimple,
 } from "@phosphor-icons/react";
-import { CONTACT_EMAIL, CONTACT_PHONE_DISPLAY, WHATSAPP_NUMBER } from "@/constants/site";
+import { CONTACT_PHONE_DISPLAY, WHATSAPP_NUMBER } from "@/constants/site";
 import SectionHead, { FadeIn } from "@/components/SectionHead";
 
 const STEPS = [
@@ -74,7 +73,6 @@ export default function ApplyForm() {
         <SectionHead
           index="06"
           eyebrow="Apply Now / Contact Us"
-          meta={<a href={`mailto:${CONTACT_EMAIL}`} className="normal-case tracking-normal text-navy/60 hover:text-gold-deep">{CONTACT_EMAIL}</a>}
           title="Ready to move in?"
           note="Share your details and we will get back to you within 24 hours."
         />
@@ -104,13 +102,6 @@ export default function ApplyForm() {
                   className="flex items-center gap-3 text-sm font-semibold text-ivory/85 transition-colors hover:text-gold-light"
                 >
                   <Phone size={18} className="text-gold" /> {CONTACT_PHONE_DISPLAY}
-                </a>
-                <a
-                  href={`mailto:${CONTACT_EMAIL}`}
-                  data-testid="apply-contact-email"
-                  className="flex items-center gap-3 text-sm font-semibold text-ivory/85 transition-colors hover:text-gold-light"
-                >
-                  <EnvelopeSimple size={18} className="text-gold" /> {CONTACT_EMAIL}
                 </a>
               </div>
             </aside>

@@ -16,7 +16,6 @@ import LocationsPage from "@/components/LocationsPage";
 import BookingPage from "@/components/BookingPage";
 import ContactPage from "@/components/ContactPage";
 import FaqsPage from "@/components/FaqsPage";
-import AppDownloadPage from "@/components/AppDownloadPage";
 import LocationDetailPage from "@/components/LocationDetailPage";
 import { LOCATION_PROPERTIES } from "@/constants/site";
 
@@ -99,8 +98,6 @@ function App() {
           <ContactPage />
         ) : standalonePage === "/faqs" ? (
           <FaqsPage />
-        ) : standalonePage === "/app-download" ? (
-          <AppDownloadPage />
         ) : bookingType ? (
           <BookingPage type={bookingType} />
         ) : (

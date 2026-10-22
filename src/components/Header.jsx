@@ -4,18 +4,24 @@ import { List, X } from "@phosphor-icons/react";
 import { HEADER_LINKS } from "@/constants/site";
 import { Logo } from "@/components/Logo";
 
-const NavLink = ({ href, label, light, onClick }) => (
-  <a
-    href={href}
-    onClick={onClick}
-    data-testid={`nav-link-${href.replace("#", "")}`}
-    className={`nav-link text-sm font-semibold tracking-wide transition-colors duration-300 ${
-      light ? "text-ivory/85 hover:text-gold-light" : "text-navy/80 hover:text-navy"
-    }`}
-  >
-    {label}
-  </a>
-);
+const NavLink = ({ href, label, light, onClick }) => {
+  const reducedOpacity = label === "Contact" || label === "FAQs";
+
+  return (
+    <a
+      href={href}
+      onClick={onClick}
+      data-testid={`nav-link-${href.replace("#", "")}`}
+      className={`nav-link text-sm font-semibold tracking-wide transition-colors duration-300 ${
+        light
+          ? `${reducedOpacity ? "text-ivory/70" : "text-ivory/85"} hover:text-gold-light`
+          : `${reducedOpacity ? "text-navy/70" : "text-navy/80"} hover:text-navy`
+      }`}
+    >
+      {label}
+    </a>
+  );
+};
 
 const BookingMenu = ({ light }) => (
   <div className="group relative">
@@ -23,7 +29,7 @@ const BookingMenu = ({ light }) => (
       href="/booking/online"
       data-testid="nav-link-booking"
       className={`nav-link inline-flex items-center text-sm font-semibold tracking-wide transition-colors duration-300 ${
-        light ? "text-ivory/85 hover:text-gold-light" : "text-navy/80 hover:text-navy"
+        light ? "text-ivory/70 hover:text-gold-light" : "text-navy/70 hover:text-navy"
       }`}
     >
       Book My Stay
@@ -128,7 +134,9 @@ export default function Header() {
                   initial={{ y: 24, opacity: 0 }}
                   animate={{ y: 0, opacity: 1 }}
                   transition={{ delay: 0.08 * i, duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
-                  className="border-b border-white/10 py-4 font-display text-3xl font-bold tracking-tight text-ivory transition-colors hover:text-gold"
+                  className={`border-b border-white/10 py-4 font-display text-3xl font-bold tracking-tight transition-colors hover:text-gold ${
+                    ["Contact", "Book My Stay", "FAQs"].includes(l.label) ? "text-ivory/70" : "text-ivory"
+                  }`}
                 >
                   {l.label}
                 </motion.a>

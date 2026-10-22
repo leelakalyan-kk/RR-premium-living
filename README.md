@@ -13,7 +13,8 @@ co-living community serving students and working professionals.
   testimonials, and food information.
 - Online booking preference form with a review step.
 - Booking-process guide and static booking policies.
-- Property-specific contact information, FAQs, and app-download information.
+- Property-specific contact information and FAQs.
+- Footer with clickable admissions phone and email links.
 - Responsive navigation, animated page sections, smooth scrolling, and toast
   notifications.
 
@@ -31,7 +32,6 @@ co-living community serving students and working professionals.
 | `/booking/policies` | Booking guidelines and policies |
 | `/contact` | Admissions contacts and resident grievance form |
 | `/faqs` | Frequently asked questions |
-| `/app-download` | iOS and Android app information |
 
 The home page uses hash links for its sections, including `/#spaces`,
 `/#amenities`, `/#food`, `/#rules`, and `/#apply`.
@@ -47,8 +47,6 @@ The home page uses hash links for its sections, including `/#spaces`,
   not send or persist booking data.
 - **Resident grievance form:** currently displays an in-page confirmation only;
   it is not connected to an email service or backend.
-- **App downloads:** store links are not configured yet; the page is marked
-  “Coming soon.”
 
 There is no application server or database configured in this project.
 
@@ -109,7 +107,6 @@ public/                       Static images and other public assets
 src/
   components/
     Amenitied.jsx              Home page amenities section
-    AppDownloadPage.jsx        App download information
     ApplyForm.jsx              Home page application form
     BookingPage.jsx            Booking, process, and policies pages
     ContactPage.jsx            Admissions contacts and grievance form
