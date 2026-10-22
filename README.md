@@ -141,9 +141,9 @@ in `public/` and referenced from the relevant component or content entry.
 
 ## Deployment
 
-The repository includes a Vercel configuration. Vercel installs dependencies
-with `npm install`, runs `npm run build`, and serves the generated `dist/`
-directory. Import the GitHub repository into Vercel to deploy it.
+The repository includes configuration for Vercel and Render. Both platforms
+install dependencies, run `npm run build`, and serve the generated `dist/`
+directory. Connect the GitHub repository to either platform to deploy it.
 
 ## Contributing
 
