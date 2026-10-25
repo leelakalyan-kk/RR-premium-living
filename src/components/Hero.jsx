@@ -50,20 +50,23 @@ export default function Hero() {
           initial={{ opacity: 0, y: 16 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.15, ease: EASE }}
-          className="mb-6 inline-flex items-center gap-3 rounded-full border border-ivory/25 px-4 py-2 text-[11px] font-bold uppercase tracking-[0.3em] text-ivory/80"
+          className="hero-location-badge mb-6 inline-flex items-center gap-3 rounded-full border border-ivory/25 px-4 py-2 text-[11px] font-bold uppercase tracking-[0.3em] text-ivory/80"
         >
           <span className="h-1.5 w-1.5 rounded-full bg-gold" />
-          PG &amp; Co-living · Hyderabad / Bangalore
+          <span>
+            <span className="hero-location-copy">PG &amp; Co-living · </span>
+            <span className="hero-location-copy">Hyderabad / Bangalore</span>
+          </span>
         </motion.p>
 
         <h1 className="font-display font-extrabold leading-[0.95] tracking-tighter text-ivory">
           <MaskedLine delay={0.25}>
             <span className="text-3xl font-medium text-ivory/75 md:text-5xl">Welcome to</span>
           </MaskedLine>
-          <MaskedLine delay={0.4} className="text-[clamp(2.9rem,8.5vw,6.6rem)]">
+          <MaskedLine delay={0.4} className="hero-title-line text-[clamp(2.9rem,8.5vw,6.6rem)]">
             RR Premium
           </MaskedLine>
-          <MaskedLine delay={0.55} className="text-[clamp(2.9rem,8.5vw,6.6rem)]">
+          <MaskedLine delay={0.55} className="hero-title-line text-[clamp(2.9rem,8.5vw,6.6rem)]">
             <span className="gold-text">Living</span>
           </MaskedLine>
         </h1>

@@ -11,7 +11,8 @@ import { Caption } from "@/components/SectionHead";
 export default function ContactPage() {
   const submitComplaint = (event) => {
     event.preventDefault();
-    const formData = new FormData(event.currentTarget);
+    const form = event.currentTarget;
+    const formData = new FormData(form);
     const message = [
       "New Complaint / Grievance — RR Premium Living",
       "---------------------------------------------",
@@ -28,7 +29,8 @@ export default function ContactPage() {
       toast.error("WhatsApp could not be opened. Please allow pop-ups and try again.");
       return;
     }
-    toast.success("WhatsApp opened. Send your grievance there to submit it.");
+    form.reset();
+    toast.success("Submitted successfully.");
   };
 
   return (

@@ -171,6 +171,56 @@ select.field-input {
   white-space: nowrap;
 }
 
+@media (max-width: 424px) {
+  #home .hero-location-badge {
+    max-width: 100%;
+    font-size: 10px;
+    letter-spacing: 0.18em;
+  }
+
+  .hero-location-copy {
+    display: block;
+    line-height: 1.625;
+  }
+
+  #home .hero-title-line {
+    font-size: clamp(2.25rem, 10.5vw, 3rem);
+  }
+}
+
+@media (max-width: 639px) {
+  .menu-table {
+    table-layout: fixed;
+  }
+
+  .menu-table th,
+  .menu-table td {
+    padding-right: 0.25rem;
+    padding-left: 0.25rem;
+  }
+
+  .menu-table th {
+    font-size: 0.58rem;
+    letter-spacing: 0.06em;
+    white-space: normal;
+  }
+
+  .menu-table td {
+    font-size: 0.75rem;
+    overflow-wrap: anywhere;
+  }
+
+  .menu-table th:first-child,
+  .menu-table td:first-child {
+    width: 26%;
+  }
+
+  .menu-day {
+    white-space: normal;
+    overflow-wrap: anywhere;
+  }
+}
+
 /* location card corner line */
 .loc-card .corner-line {
   transform: scaleX(0);

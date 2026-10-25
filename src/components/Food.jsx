@@ -39,7 +39,7 @@ export default function Food() {
           <FadeIn delay={0.15} className="lg:col-span-7 lg:flex lg:flex-col">
             <div className="flex flex-1 flex-col">
               <div className="mt-8 flex flex-1 flex-col overflow-hidden rounded-2xl lg:mt-0">
-                <div className="flex flex-1 overflow-x-auto">
+                <div className="w-full min-w-0 flex-1">
                   <table className="menu-table h-full" data-testid="menu-table">
                     <thead>
                       <tr>

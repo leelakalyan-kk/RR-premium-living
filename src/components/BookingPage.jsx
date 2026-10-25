@@ -125,7 +125,7 @@ function OnlineBooking() {
       return;
     }
     setSubmitted(true);
-    toast.success("WhatsApp opened. Send your message there to submit the booking request.");
+    toast.success("Submitted successfully.");
   };
 
   if (submitted) {

@@ -61,7 +61,7 @@ export default function ApplyForm() {
     const win = openWhatsApp(d);
     if (win) {
       form.reset();
-      toast.success("Application details are ready in WhatsApp. Send the message to submit.");
+      toast.success("Submitted successfully.");
     } else {
       toast.error("WhatsApp could not be opened. Please allow pop-ups and try again.");
     }
