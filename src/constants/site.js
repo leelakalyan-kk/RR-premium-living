@@ -148,7 +148,7 @@ export const AMENITIES = [
   { id: "housekeeping", label: "Daily Housekeeping", icon: "Sparkle", info: "Shared spaces and rooms are maintained with consistent daily care.", image: "https://images.unsplash.com/photo-1581578731548-c64695cc6952?auto=format&fit=crop&w=600&q=80" },
   { id: "water", label: "24/7 Water Supply", icon: "Timer", info: "A dependable water supply keeps everyday living comfortable and uninterrupted.", image: "/water-supply.png" },
   { id: "cctv", label: "CCTV Surveillance", icon: "VideoCamera", info: "Monitored common areas add an extra layer of visibility and security.", image: "/cctv.png" },
-  { id: "guard", label: "24/7 Security Guard", icon: "ShieldCheck", info: "On-site security support helps residents feel safe around the clock.", image: "/security-guard.png" },
+  { id: "guard", label: "24/7 Security Guard", icon: "ShieldCheck", info: "On-site security support helps residents feel safe around the clock.", image: "/security-guard.jpg" },
   { id: "parking", label: "Ample Parking", icon: "Bicycle", info: "Dedicated parking makes two-wheeler access easy for residents and visitors.", image: "/parking.png" },
   { id: "wifi", label: "High-Speed Wi-Fi", icon: "WifiHigh", info: "Stay connected for study, work, streaming, and everyday communication.", image: "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=600&q=80" },
   { id: "lift", label: "Lift Access", icon: "Elevator", info: "Lift access makes moving between floors convenient for everyone.", image: "/lift.png" },
