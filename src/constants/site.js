@@ -1,6 +1,9 @@
-export const WHATSAPP_NUMBER = "918074095895";
-export const CONTACT_PHONE_DISPLAY = "+91 80740 95895";
-export const CONTACT_EMAIL = "info@rrpremiumliving.com";
+export const WHATSAPP_NUMBER = "919550344777";
+export const CONTACT_PHONE_DISPLAY = "+91 95503 44777";
+export const CONTACT_EMAIL = "rrpremiumliving@gmail.com";
+export const FACEBOOK_URL = "https://www.facebook.com/share/1C8aV32Kbg/";
+export const INSTAGRAM_URL =
+  "https://www.instagram.com/rrpremiumliving?cplk=MXBrMzhsdjVlMHQzdA==";
 
 export const NAV_LINKS = [
   { label: "Home", href: "/" },
@@ -22,8 +25,7 @@ export const HEADER_LINKS = [
 
 export const IMAGES = {
   hero: "https://images.unsplash.com/photo-1564078516393-cf04bd966897?auto=format&fit=crop&w=2000&q=80",
-  hyderabad:
-    "https://images.unsplash.com/photo-1741545979534-02f59c742730?auto=format&fit=crop&w=1400&q=80",
+  hyderabad: "/hyderabad-location.png",
   bangalore:
     "https://images.unsplash.com/photo-1687158266872-fd2773fa76c6?auto=format&fit=crop&w=1400&q=80",
   mens: "https://images.unsplash.com/photo-1588939349575-7ab15c8bd1ef?auto=format&fit=crop&w=1000&q=80",
