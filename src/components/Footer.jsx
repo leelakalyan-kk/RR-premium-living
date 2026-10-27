@@ -3,6 +3,8 @@ import { Logo } from "@/components/Logo";
 import {
   CONTACT_EMAIL,
   CONTACT_PHONE_DISPLAY,
+  FACEBOOK_URL,
+  INSTAGRAM_URL,
   NAV_LINKS,
   WHATSAPP_NUMBER,
 } from "@/constants/site";
@@ -33,12 +35,24 @@ export default function Footer({ property }) {
                 : "Premium PG & co-living spaces for students and working professionals — in Hyderabad and Bangalore."}
             </p>
             <div className="mt-5 flex items-center gap-3 text-ivory/65">
-              <span aria-label="Facebook" role="img">
+              <a
+                href={FACEBOOK_URL}
+                aria-label="RR Premium Living on Facebook"
+                target="_blank"
+                rel="noreferrer"
+                className="transition-colors hover:text-gold-light"
+              >
                 <FacebookLogo size={20} weight="fill" />
-              </span>
-              <span aria-label="Instagram" role="img">
+              </a>
+              <a
+                href={INSTAGRAM_URL}
+                aria-label="RR Premium Living on Instagram"
+                target="_blank"
+                rel="noreferrer"
+                className="transition-colors hover:text-gold-light"
+              >
                 <InstagramLogo size={20} />
-              </span>
+              </a>
               <span className="ml-1 text-[11px] font-bold uppercase tracking-[0.24em] text-ivory/40">
                 Facebook · Instagram
               </span>

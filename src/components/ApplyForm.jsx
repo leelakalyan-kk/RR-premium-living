@@ -1,9 +1,14 @@
 import { toast } from "sonner";
 import {
   ArrowRight,
+  EnvelopeSimple,
   Phone,
 } from "@phosphor-icons/react";
-import { CONTACT_PHONE_DISPLAY, WHATSAPP_NUMBER } from "@/constants/site";
+import {
+  CONTACT_EMAIL,
+  CONTACT_PHONE_DISPLAY,
+  WHATSAPP_NUMBER,
+} from "@/constants/site";
 import SectionHead, { FadeIn } from "@/components/SectionHead";
 
 const STEPS = [
@@ -95,13 +100,20 @@ export default function ApplyForm() {
                   ))}
                 </ol>
               </div>
-              <div className="space-y-4 border-t border-white/10 pt-7">
+              <div className="flex flex-wrap items-center gap-x-6 gap-y-4 border-t border-white/10 pt-7">
                 <a
                   href={`tel:+${WHATSAPP_NUMBER}`}
                   data-testid="apply-contact-phone"
                   className="flex items-center gap-3 text-sm font-semibold text-ivory/85 transition-colors hover:text-gold-light"
                 >
                   <Phone size={18} className="text-gold" /> {CONTACT_PHONE_DISPLAY}
+                </a>
+                <a
+                  href={`mailto:${CONTACT_EMAIL}`}
+                  data-testid="apply-contact-email"
+                  className="flex items-center gap-3 text-sm font-semibold text-ivory/85 transition-colors hover:text-gold-light"
+                >
+                  <EnvelopeSimple size={18} className="text-gold" /> {CONTACT_EMAIL}
                 </a>
               </div>
             </aside>

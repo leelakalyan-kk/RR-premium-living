@@ -14,7 +14,8 @@ co-living community serving students and working professionals.
 - Online booking preference form with a review step.
 - Booking-process guide and static booking policies.
 - Property-specific contact information and FAQs.
-- Footer with clickable admissions phone and email links.
+- Clickable admissions phone and email links in the application form and
+  footer, plus links to the property's Facebook and Instagram pages.
 - Responsive navigation, animated page sections, smooth scrolling, and toast
   notifications.
 
@@ -42,6 +43,7 @@ The home page uses hash links for its sections, including `/#spaces`,
   with the application details pre-filled. The visitor must send the message in
   WhatsApp to deliver it to the admissions team. The form clears after WhatsApp
   opens successfully; the site cannot verify whether the message was sent.
+  Admissions phone and email links are also available directly from the form.
 - **Online booking:** collects preferences and displays a review/confirmation
   screen in the browser. Past move-in dates are not accepted. It currently does
   not send or persist booking data.
@@ -141,9 +143,11 @@ in `public/` and referenced from the relevant component or content entry.
 
 ## Deployment
 
-The repository includes configuration for Vercel and Render. Both platforms
-install dependencies, run `npm run build`, and serve the generated `dist/`
-directory. Connect the GitHub repository to either platform to deploy it.
+The repository includes configuration for Vercel (`vercel.json`) and Render
+(`render.yaml`). Both platforms install dependencies, run `npm run build`, and
+serve the generated `dist/` directory. The Render blueprint is configured to
+deploy the `render-live` branch. Connect the GitHub repository to either
+platform to deploy it.
 
 ## Contributing
 

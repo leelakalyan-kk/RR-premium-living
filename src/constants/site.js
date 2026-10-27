@@ -1,6 +1,9 @@
-export const WHATSAPP_NUMBER = "918074095895";
-export const CONTACT_PHONE_DISPLAY = "+91 80740 95895";
-export const CONTACT_EMAIL = "info@rrpremiumliving.com";
+export const WHATSAPP_NUMBER = "919550344777";
+export const CONTACT_PHONE_DISPLAY = "+91 95503 44777";
+export const CONTACT_EMAIL = "rrpremiumliving@gmail.com";
+export const FACEBOOK_URL = "https://www.facebook.com/share/1C8aV32Kbg/";
+export const INSTAGRAM_URL =
+  "https://www.instagram.com/rrpremiumliving?cplk=MXBrMzhsdjVlMHQzdA==";
 
 export const NAV_LINKS = [
   { label: "Home", href: "/" },
@@ -22,8 +25,7 @@ export const HEADER_LINKS = [
 
 export const IMAGES = {
   hero: "https://images.unsplash.com/photo-1564078516393-cf04bd966897?auto=format&fit=crop&w=2000&q=80",
-  hyderabad:
-    "https://images.unsplash.com/photo-1741545979534-02f59c742730?auto=format&fit=crop&w=1400&q=80",
+  hyderabad: "/hyderabad-location.png",
   bangalore:
     "https://images.unsplash.com/photo-1687158266872-fd2773fa76c6?auto=format&fit=crop&w=1400&q=80",
   mens: "https://images.unsplash.com/photo-1588939349575-7ab15c8bd1ef?auto=format&fit=crop&w=1000&q=80",
@@ -148,7 +150,7 @@ export const AMENITIES = [
   { id: "housekeeping", label: "Daily Housekeeping", icon: "Sparkle", info: "Shared spaces and rooms are maintained with consistent daily care.", image: "https://images.unsplash.com/photo-1581578731548-c64695cc6952?auto=format&fit=crop&w=600&q=80" },
   { id: "water", label: "24/7 Water Supply", icon: "Timer", info: "A dependable water supply keeps everyday living comfortable and uninterrupted.", image: "/water-supply.png" },
   { id: "cctv", label: "CCTV Surveillance", icon: "VideoCamera", info: "Monitored common areas add an extra layer of visibility and security.", image: "/cctv.png" },
-  { id: "guard", label: "24/7 Security Guard", icon: "ShieldCheck", info: "On-site security support helps residents feel safe around the clock.", image: "/security-guard.png" },
+  { id: "guard", label: "24/7 Security Guard", icon: "ShieldCheck", info: "On-site security support helps residents feel safe around the clock.", image: "/security-guard.jpg" },
   { id: "parking", label: "Ample Parking", icon: "Bicycle", info: "Dedicated parking makes two-wheeler access easy for residents and visitors.", image: "/parking.png" },
   { id: "wifi", label: "High-Speed Wi-Fi", icon: "WifiHigh", info: "Stay connected for study, work, streaming, and everyday communication.", image: "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=600&q=80" },
   { id: "lift", label: "Lift Access", icon: "Elevator", info: "Lift access makes moving between floors convenient for everyone.", image: "/lift.png" },
